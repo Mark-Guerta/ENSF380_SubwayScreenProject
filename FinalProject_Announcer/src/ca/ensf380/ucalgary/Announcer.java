@@ -28,10 +28,12 @@ public class Announcer {
 					Clip clip = AudioSystem.getClip();
 					clip.open(audioInput);
 					clip.start();
-					// Causes the current thread to sleep for a specific amount of time.
+					// A daemon thread is made. ()
+					// A thread in Java is the direction 
+					// or path that is taken while a program is being executed.
 					// Basically, the program stops running while music is played until 
 					// the timer runs out in milliseconds.
-					Thread.sleep(11000);
+					Thread.sleep(288000);
 				}
 				else {
 					System.out.println("Error");
