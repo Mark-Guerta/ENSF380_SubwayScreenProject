@@ -5,4 +5,5 @@
  * 
  */
 module weatherReport {
+	requires jsoup;
 }
