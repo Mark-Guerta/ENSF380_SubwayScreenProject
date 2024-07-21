@@ -15,8 +15,7 @@ import javax.sound.sampled.Clip;
 public class Announcer {
 	private String station;
 	// Creates the name for the audio file
-	public Announcer(String destination) {
-		this.station = destination + ".wav";
+	public Announcer() {
 	}
 	public void playAnnouncer() {
 			try {
@@ -33,10 +32,10 @@ public class Announcer {
 					// or path that is taken while a program is being executed.
 					// Basically, the program stops running while music is played until 
 					// the timer runs out in milliseconds.
-					Thread.sleep(288000);
+					Thread.sleep(5000);
 				}
 				else {
-					System.out.println("Error");
+					System.out.println("Error: File does not exist");
 				}
 			}
 			catch (Exception e) {
