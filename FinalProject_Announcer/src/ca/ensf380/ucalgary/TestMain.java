@@ -1,5 +1,8 @@
 package ca.ensf380.ucalgary;
-
+/**
+ * Referenced code:
+ * @author BroCode (Youtube)
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,13 +15,17 @@ public class TestMain {
 		String line = "";
 		ArrayList<String[]> Stations = new ArrayList<String[]>();
 		try {
+			// fetches Map.csv
 			reader = new BufferedReader(new FileReader("Map.csv"));
+			// While loop adds and edits the csv for usage in String[] collections
 			while ((line = reader.readLine()) != null) {
 				String[] row = line.split(",");
 				if (row.length > 8) {
+					// removes quotes
 					row[7] = row[7].replaceAll("\"", "");
 					row[8] = row[8].replaceAll("\"", "");
 				}
+				// Removes leading whitespaces
 				row[4] = row[4].trim();
 				Stations.add(row);
 			}
