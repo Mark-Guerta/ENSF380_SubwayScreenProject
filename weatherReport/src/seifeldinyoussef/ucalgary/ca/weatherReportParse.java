@@ -14,20 +14,19 @@ public class weatherReportParse {
 		
 		
 		try {
-			//String html = Jsoup.connect("https://openweathermap.org/city/5913490").get().html();
-			
-			Document document = Jsoup.connect("https://wttr.in/").get();
-			//String websiteContent = document.html();
-
-			//System.out.println(document);
 			
 			Scanner scanner = new Scanner(System.in);
 			
 			System.out.println("Enter City ID:");
 			
 			String cityID = scanner.nextLine().trim();
+			Document document = Jsoup.connect("https://wttr.in/" + cityID).get();
 			
-			//System.out.println(cityID);
+			//System.out.println(document);
+			
+			
+			
+			
 			String cityIDReg =Pattern.quote(cityID);
 			Pattern cityIDPattern = Pattern.compile(cityIDReg, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = cityIDPattern.matcher(document.html());
@@ -36,7 +35,7 @@ public class weatherReportParse {
 				Elements weatherReport = document.select("pre");
 				for (Element element : weatherReport) {
 					String weatherReportText = element.text();
-					if (weatherReportText.toLowerCase().contains(cityID.toLowerCase())) {
+					if (weatherReportText.contains(cityID)) {
 						System.out.println(cityID + weatherReportText);	
 						break;
 					}
