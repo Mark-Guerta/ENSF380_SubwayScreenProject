@@ -8,7 +8,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/*String invokeApi(String keyword) {
+if (keyword) use it; else -> Call API without keyword
+return response;
+}
 
+main() {
+invokeApi();
+
+Scanner in = take input();
+keyword = input string();
+while (keyword != null) {
+invokeAPi(keyword);
+}*/
 
 
 public class newsApi{
