@@ -1,4 +1,4 @@
-package seifeldinyoussef.ucalgary.ca;
+package ca.ucalgary.edu.ensf380;
 import java.util.regex.*;
 import java.io.IOException;
 import java.util.Scanner;

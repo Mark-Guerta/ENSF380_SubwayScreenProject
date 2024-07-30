@@ -1,4 +1,4 @@
-package subwayScreen;
+package ca.ucalgary.edu.ensf380;
 
 import java.net.URL;
 import java.net.HttpURLConnection;
@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 
 public class newsApi{
-	public static void main(String[] args ) {
+	public static void main21(String[] args ) {
 		/*Scanner scanner2 = new Scanner (System.in);
 		System.out.println("Enter a keyword:");
 	    String keyword = scanner2.nextLine().trim();*/
