@@ -12,11 +12,27 @@ import org.json.simple.parser.JSONParser;
 
 
 public class newsApi{
-	public static void main21(String[] args ) {
-		/*Scanner scanner2 = new Scanner (System.in);
-		System.out.println("Enter a keyword:");
-	    String keyword = scanner2.nextLine().trim();*/
+	public static void main(String[] args ) {
+		invokeApi("");
+		
+		Scanner scanner2 = new Scanner (System.in);
+		
 		String keyword ="";
+		
+		while(true) {
+			System.out.println("Enter a keyword or type IGNORE:");
+			keyword = scanner2.nextLine();
+			if (keyword.equalsIgnoreCase("IGNORE")) {
+				break;
+			}
+			invokeApi(keyword);
+			
+		}
+		scanner2.close();
+	}
+	
+	static void invokeApi(String keyword) {
+		
 		try {
 			String url1 = "https://api.thenewsapi.com/v1/news/all";//
 			String apiKey = "fc7xQuAZMDSj0rMBFUEHh5a31KpbJHIxT6hZ4ZLL";
@@ -61,8 +77,7 @@ public class newsApi{
 			e.printStackTrace();
 		}finally {
 		   	
-		   	//scanner2.close();
-			
+		   	
 		}
 	}
 }
