@@ -6,27 +6,27 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Mark/eclipse-workspace/ENSF380_SubwayScreenProject/SubwayScreen-main/jars/json-simple-1.1.1.jar">
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/gson-2.8.9.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Mark/eclipse-workspace/ENSF380_SubwayScreenProject/SubwayScreen-main/jars/json-20210307.jar">
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/jackson-databind-2.13.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Mark/eclipse-workspace/ENSF380_SubwayScreenProject/SubwayScreen-main/jars/jackson-databind-2.13.0.jar">
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/json-20210307.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Mark/eclipse-workspace/ENSF380_SubwayScreenProject/SubwayScreen-main/jars/gson-2.8.9.jar">
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/json-simple-1.1.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Mark/eclipse-workspace/ENSF380_SubwayScreenProject/SubwayScreen-main/jars/jsoup-1.6.0.jar">
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/jsoup-1.6.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

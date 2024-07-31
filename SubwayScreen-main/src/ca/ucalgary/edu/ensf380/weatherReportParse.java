@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 public class weatherReportParse {
 
-	public static void parse() {
+	public static void main(String[] args) {
 		
 		
 		try {// catches exceptions at the end
