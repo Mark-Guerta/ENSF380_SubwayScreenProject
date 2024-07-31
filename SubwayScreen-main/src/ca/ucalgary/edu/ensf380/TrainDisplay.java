@@ -70,9 +70,9 @@ public class TrainDisplay {
 	}
 	public void activateTrainDisplay(JFrame frame) {
 		// 1080x120 resolution
-
+		
 		String file = "stations720p.png";
-		JLayeredPane nextStations = new JLayeredPane();
+		JLayeredPane TrainPane = new JLayeredPane();
 		BufferedImage myPicture = null;
 		try {
 			myPicture = ImageIO.read(new File(file));
@@ -81,11 +81,11 @@ public class TrainDisplay {
 		}
 		JLabel imgStations = new JLabel(new ImageIcon(myPicture));
 		imgStations.setSize(imgStations.getPreferredSize());
-		nextStations.add(imgStations, JLayeredPane.DEFAULT_LAYER);
-		nextStations.setBounds(0, 0, 1080, 120);
+		TrainPane.add(imgStations, JLayeredPane.DEFAULT_LAYER);
+		TrainPane.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
-			nextStations.add(stations[i], JLayeredPane.PALETTE_LAYER);
-		frame.add(nextStations);
+			TrainPane.add(stations[i], JLayeredPane.PALETTE_LAYER);
+		frame.add(TrainPane);
 	}
 	public void updateForward(String station) {
 		Pattern pattern = Pattern.compile("(\\d\\d)");

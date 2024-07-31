@@ -75,10 +75,10 @@ public class MyApp1 {
         String line;
         String train;
         Pattern pattern = Pattern.compile("(T1\\(R\\d\\d, .\\))");
-		
-		JFrame frame = new JFrame();
-
         TrainDisplay trainDisplay = null;
+		JFrame frame = new JFrame();
+		weatherReportParse.weatherTimeMain(args, frame);;
+
         try {
         	while (true) {
         		line = reader.readLine();
@@ -93,13 +93,16 @@ public class MyApp1 {
         					frame.setSize(1095, 720);
         					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         					frame.setVisible(true);
-        					frame.setResizable(false);
+        					frame.setResizable(true);
         				}
-    					trainDisplay.updateForward(line);
+    					if (line.contains("F"))
+    						trainDisplay.updateForward(line);
+    					else
+    						trainDisplay.updateBackward(line);
         			}
         		}
-        	}
 
+        	}
         } catch (IOException e) {
             e.printStackTrace();
         }
