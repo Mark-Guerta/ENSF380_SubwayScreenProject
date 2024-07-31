@@ -90,7 +90,7 @@ public class MyApp1 {
         					trainDisplay = new TrainDisplay(train, readCSV("map.csv"));
         					trainDisplay.activateTrainDisplay(frame);
         					frame.setLayout(null);
-        					frame.setSize(1080, 720);
+        					frame.setSize(1095, 720);
         					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         					frame.setVisible(true);
         					frame.setResizable(false);

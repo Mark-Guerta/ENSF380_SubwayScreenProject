@@ -28,13 +28,13 @@ public class TrainDisplay {
 		this.currentStation = Integer.parseInt(matcher.group(1));
 		this.stations = new JLabel[5];
 		for (int i = 0; i < 5; i++) {
-			stations[i] = new JLabel(stationArray.get(currentStation + i)[4]);
+			stations[i] = new JLabel(stationArray.get(currentStation + i)[4],SwingConstants.CENTER);
 		}
-		stations[0].setBounds(25, 0, 1080, 180);
-		stations[1].setBounds(260, 0, 1080, 180);
-		stations[2].setBounds(500, 0, 1080, 180);
-		stations[3].setBounds(720, 0, 1080, 180);
-		stations[4].setBounds(930, 0, 1080, 180);
+		stations[0].setBounds(-25, 0, 200, 180);
+		stations[1].setBounds(210, 0, 200, 180);
+		stations[2].setBounds(435, 0, 200, 180);
+		stations[3].setBounds(670, 0, 200, 180);
+		stations[4].setBounds(900, 0, 200, 180);
 	}
 
 
@@ -69,10 +69,10 @@ public class TrainDisplay {
 		Line = line;
 	}
 	public void activateTrainDisplay(JFrame frame) {
-		// 1080x180 resolution
+		// 1080x120 resolution
 
 		String file = "stations720p.png";
-		JPanel nextStations = new JPanel();
+		JLayeredPane nextStations = new JLayeredPane();
 		BufferedImage myPicture = null;
 		try {
 			myPicture = ImageIO.read(new File(file));
@@ -80,10 +80,11 @@ public class TrainDisplay {
 			e.printStackTrace();
 		}
 		JLabel imgStations = new JLabel(new ImageIcon(myPicture));
-		nextStations.add(imgStations);
-		nextStations.setBounds(0, 0, 1080, 180);
+		imgStations.setSize(imgStations.getPreferredSize());
+		nextStations.add(imgStations, JLayeredPane.DEFAULT_LAYER);
+		nextStations.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
-			frame.add(stations[i]);
+			nextStations.add(stations[i], JLayeredPane.PALETTE_LAYER);
 		frame.add(nextStations);
 	}
 	public void updateForward(String station) {
