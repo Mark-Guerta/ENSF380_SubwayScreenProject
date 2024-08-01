@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
 
 public class weatherReportParse {
 
-	public static void weatherTimeMain(String[] args, JFrame frame) {
+	public static void weatherMain() {
 		
 		
 		try {// catches exceptions at the end
@@ -55,13 +55,11 @@ public class weatherReportParse {
 		
 			scanner.close();
 		}catch (IOException e) {
-			throw new IllegalArgumentException(" error while fetching");
+			throw new IllegalArgumentException("Error while fetching");
 			
 		}
-	}
-	public static void updateWeatherTime() {
-		
-	}
+	} 
+
 }	
 	
 	 
