@@ -10,7 +10,7 @@ public class WeatherDisplay {
 	private JPanel display;
 	private JLabel timeLabel;
 
-	WeatherDisplay(JFrame frame) {
+	public WeatherDisplay(JFrame frame) {
 		display = new JPanel();
 		display.setBackground(Color.white);
 		display.setBounds(0, 120, 432, 480);

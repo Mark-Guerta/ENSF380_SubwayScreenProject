@@ -15,7 +15,7 @@ public class NewsDisplay {
 		display.setBounds(0, 600, 1090, 120);
 		display.setLayout(new GridBagLayout());
 		// Add newsApi.newsMain() instead of substitute text
-		newsLabel = new JLabel("This a news article...");
+		newsLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 		display.add(newsLabel);
 		frame.add(display);
 

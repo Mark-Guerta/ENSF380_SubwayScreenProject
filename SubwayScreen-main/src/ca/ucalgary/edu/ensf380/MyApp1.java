@@ -76,7 +76,6 @@ public class MyApp1 {
         String train;
         Pattern pattern = null;
         try {
-        	System.out.println(args[0]);
             if (args[0].equals("T1") || args[0].equals("T2")|| args[0].equals("T3") ||args[0].equals("T4") || args[0].equals("T5") || args[0].equals("T6") 
             		|| args[0].equals("T7") || args[0].equals("T8")|| args[0].equals("T9") ||args[0].equals("T10") || args[0].equals("T11") || args[0].equals("T12"))
         		 pattern = Pattern.compile("("+ args[0] +"\\([RGB]\\d\\d, .\\))");

@@ -13,7 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 
 
-public class newsApi{
+public class newsApiOriginal{
 	public static String newsMain() {
 		/*Scanner scanner2 = new Scanner (System.in);
 		System.out.println("Enter a keyword:");
@@ -21,7 +21,7 @@ public class newsApi{
 		String keyword ="";
 		try {
 			String url1 = "https://api.thenewsapi.com/v1/news/all";
-			String apiKey = "fc7xQuAZMDSj0rMBFUEHh5a31KpbJHIxT6hZ4ZLL";
+			String apiKey = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";
 			String lang = "en";
 			String authUrl = url1 + "?api_token="+ apiKey + "&language=" + lang   + "&search=" + keyword;
 			URI uri = new URI(authUrl);
