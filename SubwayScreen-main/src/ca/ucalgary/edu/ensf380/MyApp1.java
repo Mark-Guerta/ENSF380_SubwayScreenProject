@@ -31,13 +31,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.*;
 import javax.swing.JFrame;
+import ca.ucalgary.edu.ensf380.newsApi;
 
 /**
  * @author  Mahdi Ansari
  *
  */
 public class MyApp1 {
+	
 	public static void main(String[] args) {
+		
+		
         // Runs the simulator 
 		Process process = null;        
         try {
@@ -139,4 +143,5 @@ public class MyApp1 {
 		}
 		
 	}
+	
 }
