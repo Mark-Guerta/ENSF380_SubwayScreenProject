@@ -15,10 +15,10 @@ import org.json.simple.parser.JSONParser;
 
 
 public class newsApi{
-	private JSONArray newsArray;
+
 	public newsApi() {
 	}
-	public static void main(String[] args ) {
+	public static void newsMain(String[] args ) {
 		invokeApi("");
 		
 		Scanner scanner2 = new Scanner (System.in);
@@ -94,15 +94,5 @@ public class newsApi{
 		}
 
 	}
-	public String accessNews() {
 
-	}
-
-	public JSONArray getNewsArray() {
-		return newsArray;
-	}
-
-	public void setNewsArray(JSONArray newsArray) {
-		this.newsArray = newsArray;
-	}
 }
