@@ -4,6 +4,8 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -44,16 +46,19 @@ public class newsApi{
 					informationString.append(scanner.nextLine());
 				}
 				scanner.close();
-				System.out.println(informationString);
+				//System.out.println(informationString);
 				
 				JSONParser parse = new JSONParser();
 				JSONObject jsonObject = (JSONObject) parse.parse(String.valueOf(informationString.toString()));
 				JSONArray dataArray = (JSONArray) jsonObject.get("data");
-				System.out.println(dataArray.get(0));
+				//System.out.println(dataArray.get(0));
 				JSONObject newsData = (JSONObject) dataArray.get(0);
-				
-				System.out.println(newsData);
-				
+				Pattern snippetPattern = Pattern.compile("(\"[A-Z].+?\\.\\.\\.\")");
+				Matcher matcher = snippetPattern.matcher(newsData.toString());
+				if(matcher.find())
+				System.out.println(matcher.group(1).replaceAll("\\\n\\\n", "").substring(1, matcher.group(1).length() - 1));
+				else
+					throw new Exception("Regex failed to find snippet.");
 			}
 			
 			

@@ -77,7 +77,7 @@ public class MyApp1 {
         Pattern pattern = Pattern.compile("(T1\\(R\\d\\d, .\\))");
         TrainDisplay trainDisplay = null;
 		JFrame frame = new JFrame();
-		weatherReportParse.weatherTimeMain(args, frame);;
+		newsApi.newsMain(args);;
 
         try {
         	while (true) {
