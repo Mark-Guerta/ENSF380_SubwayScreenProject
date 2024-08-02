@@ -104,29 +104,41 @@ public class SubwayScreen {
         		if (line != null) {
         		Matcher matcher = pattern.matcher(line);
         			if(matcher.find()) {
-        				train = matcher.group(1);
-        				if (trainDisplay == null) {
+        				if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
+        					train = matcher.group(1);
         					trainDisplay = new TrainDisplay(train, readMapCSV("map.csv"));
         					weatherDisplay = new WeatherDisplay(frame);
         					newsDisplay = new NewsDisplay(frame);
-        					trainDisplay.activateTrainDisplay(frame);
+        					if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
+        						throw new Exception("Failed display construction");
+        					trainDisplay.formatTrainDisplay(frame);
         					frame.setLayout(null);
         					frame.setSize(1095, 720);
         					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         					frame.setVisible(true);
         					frame.setResizable(false);
         				}
+        				else
+        					throw new Exception("Display active created too early");
+        				newsDisplay.updateNewsDisplay();
         				weatherDisplay.updateWeatherDisplay();
+        		
     					if (line.contains("F"))
     						trainDisplay.updateForward(line);
-    					else
+    					else if (line.contains("B"))
     						trainDisplay.updateBackward(line);
+    					else
+    						throw new Exception("Undefined direction");
         			}
         		}
-
         	}
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
+        }
+        catch (Exception e) {
+        	e.printStackTrace();
+        	System.exit(1);
         }
     }
 	public static ArrayList<String[]> readMapCSV(String fileName) {
