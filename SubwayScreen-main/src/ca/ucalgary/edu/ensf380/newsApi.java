@@ -4,6 +4,9 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,30 +15,23 @@ import org.json.simple.parser.JSONParser;
 
 
 public class newsApi{
-	public static void main(String[] args ) {
-		invokeApi("");
-		
-		Scanner scanner2 = new Scanner (System.in);
-		
-		String keyword ="";
-		
-		while(true) {
-			System.out.println("Enter a keyword or type IGNORE:");
-			keyword = scanner2.nextLine();
-			if (keyword.equalsIgnoreCase("IGNORE")) {
-				break;
-			}
-			invokeApi(keyword);
-			
-		}
-		scanner2.close();
-	}
 	
-	static void invokeApi(String keyword) {
+	public newsApi() {
+		
+	}
+	public static void main(String[] args ) {
+		while (args.length > 0) {
+			String keyword = args[21];
+			invokeApi(keyword);
+		}
+	}
+		
+	
+	private static void invokeApi(String keyword) {
 		
 		try {
 			String url1 = "https://api.thenewsapi.com/v1/news/all";//
-			String apiKey = "fc7xQuAZMDSj0rMBFUEHh5a31KpbJHIxT6hZ4ZLL";
+			String apiKey = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";
 			String lang = "en";
 			String authUrl = url1 + "?api_token="+ apiKey + "&language=" + lang   + "&search=" + keyword;
 			URI uri = new URI(authUrl);
@@ -67,13 +63,19 @@ public class newsApi{
 				JSONArray dataArray = (JSONArray) jsonObject.get("data");
 				System.out.println(dataArray.get(0));
 				JSONObject newsData = (JSONObject) dataArray.get(0);
+				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\\.\")");
+				Matcher matcher = snippetPattern.matcher(newsData.toString());
 				
+				if(matcher.find()) {
+					String description = matcher.group(1).replaceAll("\"description\":","").replaceAll("\\\\n\\\\n", "").replaceAll("\\\\u[\\d|[A-Z]]+", "");
+					description = description.substring(1, description.length() - 1);
+					System.out.println(description);
 				System.out.println(newsData);
 				
 			}
 			
-			
-		} catch (Exception e) {
+			}
+			} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 		   	
