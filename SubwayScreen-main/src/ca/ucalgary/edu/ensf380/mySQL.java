@@ -27,7 +27,7 @@ public class mySQL {
 				File adFile = new File(filePath);
 				if (adFile.exists()) {
 					JFrame frame = new JFrame(fileName);
-					frame.setSize(800, 600);
+					frame.setSize(800, 600);// adjust frame size
 					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					
 					
