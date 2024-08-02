@@ -21,6 +21,7 @@
  *	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ca.ucalgary.edu.ensf380;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -87,7 +88,7 @@ public class SubwayScreen {
         InputStream inputStream = process.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
-        String train;
+        String train = null;
         Pattern pattern = null;
         try {
         	// Checks if args[0] contains a train number
@@ -124,7 +125,6 @@ public class SubwayScreen {
         					trainDisplay = new TrainDisplay(train, stations);
         					weatherDisplay = new WeatherDisplay();
         					newsDisplay = new NewsDisplay();
-        					
         					if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
         						throw new Exception("Failed display construction");
         					frame.add(trainDisplay.getDisplay());
@@ -137,15 +137,13 @@ public class SubwayScreen {
         					frame.setResizable(false);
         				}
         				// Updates display contents
-        				newsDisplay.updateNewsDisplay();
-        				weatherDisplay.updateWeatherDisplay();
-        				// Updates based on direction
-    					if (trainDisplay.getDirection().equals("F"))
-    						trainDisplay.updateForward(line);
-    					else if (trainDisplay.getDirection().equals("B"))
-    						trainDisplay.updateBackward(line);
-    					else
-    						throw new Exception("Undefined direction");
+        				newsDisplay.updateDisplay();
+        				weatherDisplay.updateDisplay();
+        				if (train.contains("F"))
+							trainDisplay.setDirection("F");
+						else
+							trainDisplay.setDirection("B");
+        				trainDisplay.updateDisplay();
         			}
         		}
         	}

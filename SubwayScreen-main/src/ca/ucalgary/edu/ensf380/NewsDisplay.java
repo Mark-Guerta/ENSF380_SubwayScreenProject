@@ -11,26 +11,20 @@ import javax.swing.*;
  * 	@author Saif Youssef
  *  @version 0.9
  */
-public class NewsDisplay {
-	private JPanel display;
+public class NewsDisplay extends Display{
 	private JLabel newsLabel;
 	/**
 	 * Formats display and fetches data from newsApi class
 	 */
 	public NewsDisplay() {
-		display = new JPanel();
+		super();
+		display.setOpaque(true);
 		display.setBackground(Color.white);
 		display.setBounds(0, 600, 1090, 120);
 		display.setLayout(new GridBagLayout());
 		// Add newsApi.newsMain() instead of substitute text
 		newsLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 		display.add(newsLabel);
-	}
-	public JPanel getDisplay() {
-		return display;
-	}
-	public void setDisplay(JPanel display) {
-		this.display = display;
 	}
 	public JLabel getNewsLabel() {
 		return newsLabel;
@@ -41,7 +35,7 @@ public class NewsDisplay {
 	/**
 	 * Updates display and fetches data from newsApi class
 	 */
-	public void updateNewsDisplay() {
+	public void updateDisplay() {
 		// Requirements: update the newsDisplay with using the description string variable in  invokeAPI of newsApi.
 		newsLabel.setText("Insert news text here");
 		newsLabel.revalidate();

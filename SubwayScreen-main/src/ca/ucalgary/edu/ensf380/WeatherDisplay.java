@@ -10,17 +10,17 @@ import javax.swing.*;
  * @author Mark Guerta
  * @author Saif Youssef
  */
-public class WeatherDisplay {
-	private JPanel display;
+public class WeatherDisplay extends Display{
 	private JLabel timeLabel;
 	/**
 	 *  Formats and fetches weather data from weatherReportParse
 	 */
 	public WeatherDisplay() {
-		display = new JPanel();
-		display.setBackground(Color.white);
+		super();
 		display.setBounds(0, 120, 432, 480);
 		display.setLayout(new GridBagLayout());
+		display.setOpaque(true);
+		display.setBackground(Color.white);
 		timeLabel = new JLabel(LocalDateTime.now().toString());
 		display.add(timeLabel);
 
@@ -29,16 +29,10 @@ public class WeatherDisplay {
 	/**
 	 * Updates and fetches weather data from weatherReportParse
 	 */
-	public void updateWeatherDisplay() {
+	public void updateDisplay() {
 		timeLabel.setText(LocalDateTime.now().toString());
 		timeLabel.revalidate();
 		display.revalidate();
-	}
-	public JPanel getDisplay() {
-		return display;
-	}
-	public void setDisplay(JPanel display) {
-		this.display = display;
 	}
 	public JLabel getTimeLabel() {
 		return timeLabel;
