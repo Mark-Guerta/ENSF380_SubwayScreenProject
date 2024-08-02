@@ -13,9 +13,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Announcer {
-
-	public Announcer() {
-	}
 	public static void playAnnouncer(String station) {
 			try {
 				station = station + ".wav";
