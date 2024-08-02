@@ -20,10 +20,13 @@ public class newsApi{
 		
 	}
 	public static void main(String[] args ) {
-		while (args.length > 0) {
-			String keyword = args[21];
-			invokeApi(keyword);
+		String keyword = "";
+		
+		if (args.length > 0) {
+			keyword = args[0];
+			
 		}
+		invokeApi(keyword);
 	}
 		
 	
