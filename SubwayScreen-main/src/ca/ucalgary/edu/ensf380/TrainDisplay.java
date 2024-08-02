@@ -32,10 +32,10 @@ public class TrainDisplay extends Display {
 			// Sets train line colour
 			if (train.contains("R"))
 				Line = "R";
-			else if (train.contains("B"))
-				Line = "B";
 			else if (train.contains("G"))
 				Line = "G";
+			else if (train.contains("B"))
+				Line = "B";
 			else
 				throw new Exception("Unknown train line");
 			// Sets train direction
@@ -165,54 +165,6 @@ public class TrainDisplay extends Display {
 
 	public void setDisplay(JLayeredPane display) {
 		this.display = display;
-	}
-
-	public int getRedFirst() {
-		return redFirst;
-	}
-
-	public void setRedFirst(int redFirst) {
-		this.redFirst = redFirst;
-	}
-
-	public int getBlueFirst() {
-		return blueFirst;
-	}
-
-	public void setBlueFirst(int blueFirst) {
-		this.blueFirst = blueFirst;
-	}
-
-	public int getGreenFirst() {
-		return greenFirst;
-	}
-
-	public void setGreenFirst(int greenFirst) {
-		this.greenFirst = greenFirst;
-	}
-
-	public int getRedLast() {
-		return redLast;
-	}
-
-	public void setRedLast(int redLast) {
-		this.redLast = redLast;
-	}
-
-	public int getBlueLast() {
-		return blueLast;
-	}
-
-	public void setBlueLast(int blueLast) {
-		this.blueLast = blueLast;
-	}
-
-	public int getGreenLast() {
-		return greenLast;
-	}
-
-	public void setGreenLast(int greenLast) {
-		this.greenLast = greenLast;
 	}
 	// Updates train stations on screen
 	public void updateDisplay() {
