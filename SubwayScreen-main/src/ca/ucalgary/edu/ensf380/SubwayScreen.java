@@ -118,8 +118,6 @@ public class SubwayScreen {
         					frame.setVisible(true);
         					frame.setResizable(false);
         				}
-        				else
-        					throw new Exception("Display active created too early");
         				newsDisplay.updateNewsDisplay();
         				weatherDisplay.updateWeatherDisplay();
         		

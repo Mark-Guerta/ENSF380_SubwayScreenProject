@@ -94,7 +94,7 @@ public class TrainDisplay {
 			}
 		}
 		// Adjusts JLabel position
-		stations[0].setBounds(-25, 0, 200, 180);
+		stations[0].setBounds(15, 0, 200, 180);
 		stations[1].setBounds(210, 0, 200, 180);
 		stations[2].setBounds(435, 0, 200, 180);
 		stations[3].setBounds(670, 0, 200, 180);
@@ -219,7 +219,7 @@ public class TrainDisplay {
 	public void updateForward(String train) {
 		stationMatcher(train);
 		boolean check = false;
-		for (int i = 1; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			// Checks if at the end of line
 			if (currentStation == redLast || currentStation == blueLast || currentStation == greenLast) {
 				check = true;
@@ -241,7 +241,7 @@ public class TrainDisplay {
 	public void updateBackward(String train) {
 		stationMatcher(train);
 		boolean check = false;
-		for (int i = 1; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			if (currentStation == redFirst || currentStation == blueFirst || currentStation == greenFirst) {
 				check = true;
 				stations[i].setText("");
