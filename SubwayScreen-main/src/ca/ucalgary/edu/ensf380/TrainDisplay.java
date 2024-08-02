@@ -56,8 +56,6 @@ public class TrainDisplay {
 					greenFirst = Integer.parseInt(stationArray.get(i)[0]);
 					break;
 				}
-				else
-					throw new Exception("Train lines not intialized");
 			}
 		}
 		
