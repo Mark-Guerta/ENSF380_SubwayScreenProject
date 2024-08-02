@@ -12,16 +12,20 @@ import org.jsoup.select.Elements;
 public class weatherReportParse {
 
 	public static void main(String[] args) {
-		
+		if (args.length == 0) {
+			System.out.println("enter city name using command line");
+			return;
+		}
+		String cityID = args[0].trim();
 		
 		try {// catches exceptions at the end
 			
-			Scanner scanner = new Scanner(System.in);
 			
-			System.out.println("Enter City Name:");// prompts user to input the name of the city
 			
-			String cityID = scanner.nextLine().trim();//takes user input, trims it from whitespace and saves it into cityID
-			Document document = Jsoup.connect("https://wttr.in/" + cityID).get();// parses and returns the website in a form of a document
+			
+			
+			
+			Document document = Jsoup.connect("https://wttr.in/" + cityID).timeout(10000).get();// parses and returns the website in a form of a document. timeout is added in case it takes too long to fetch, so that it doesnt give errors.
 			
 			//System.out.println(document);
 			
@@ -56,9 +60,9 @@ public class weatherReportParse {
 		
 
 		
-			scanner.close();
+			
 		}catch (IOException e) {
-			throw new IllegalArgumentException(" error while fetching");
+			e.printStackTrace();
 			
 		}
 	}
