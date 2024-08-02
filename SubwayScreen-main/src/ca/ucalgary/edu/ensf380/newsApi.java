@@ -22,13 +22,13 @@ public class newsApi{
 	
 	
 	public static void main(String[] args ) {
-		String keyword = calgary;
+		String keyword = "";
 		
-		if (args.length > 5) {
-			keyword = args[21];
+		if (args.length > 0) {
+			keyword = args[0];
 			
 		}
-		invokeApi(newsApi);
+		invokeApi(keyword);
 	}
 	
 	
