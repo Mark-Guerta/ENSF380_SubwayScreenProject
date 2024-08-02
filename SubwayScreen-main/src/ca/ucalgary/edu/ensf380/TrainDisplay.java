@@ -260,7 +260,7 @@ public class TrainDisplay {
 		Announcer.playAnnouncer(stationArray.get(currentStation + 1)[4]);
 	}
 	// Sorts extracting station number from train
-	public void stationMatcher(String train) {
+	private void stationMatcher(String train) {
 		Pattern pattern = Pattern.compile("(\\d\\d)");
 		Matcher matcher =  pattern.matcher(train);
 		try {
