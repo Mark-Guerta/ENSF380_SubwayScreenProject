@@ -22,8 +22,8 @@ public class WeatherDisplay {
 	}
 	public void updateWeatherDisplay() {
 		timeLabel.setText(LocalDateTime.now().toString());
-		timeLabel.validate();
-		display.validate();
+		timeLabel.revalidate();
+		display.revalidate();
 	}
 	public JPanel getDisplay() {
 		return display;

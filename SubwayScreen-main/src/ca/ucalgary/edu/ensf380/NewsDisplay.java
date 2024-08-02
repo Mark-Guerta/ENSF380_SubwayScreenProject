@@ -23,7 +23,6 @@ public class NewsDisplay {
 	public void updateNewsDisplay() {
 		// Requirements: update the newsDisplay with using the description string variable in  invokeAPI of newsApi.
 		newsLabel.setText("Insert news text here");
-		newsLabel.validate();
-		display.validate();
+		newsLabel.revalidate();
 	}
 }

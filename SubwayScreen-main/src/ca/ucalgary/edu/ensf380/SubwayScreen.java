@@ -36,7 +36,7 @@ import javax.swing.JFrame;
  * @author  Mahdi Ansari
  *
  */
-public class MyApp1 {
+public class SubwayScreen {
 	public static void main(String[] args) {
         // Runs the simulator 
 		Process process = null;        
