@@ -27,13 +27,16 @@ public class Announcer {
 	 */
 	public static final void playAnnouncer(String station) {
 			try {
+				// Combines station name to create wav file
 				station = station + ".wav";
 				File audioPath = new File("StationAnnouncements", station);
 				if (audioPath.exists()) {
+					// Fetches and plays audio
 					AudioInputStream audioInput = AudioSystem.getAudioInputStream(audioPath);
 					Clip clip = AudioSystem.getClip();
 					clip.open(audioInput);
 					clip.start();
+					// Allows audio to play for 5 seconds
 					Thread.sleep(5000);
 				}
 				else {

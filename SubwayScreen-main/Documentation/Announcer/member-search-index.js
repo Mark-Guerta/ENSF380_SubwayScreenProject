@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"ca.ucalgary.edu.ensf380","c":"Announcer","l":"playAnnouncer(String)","u":"playAnnouncer(java.lang.String)"}];updateSearchResults();

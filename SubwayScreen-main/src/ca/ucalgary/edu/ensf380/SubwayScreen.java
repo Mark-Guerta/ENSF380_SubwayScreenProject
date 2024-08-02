@@ -33,10 +33,24 @@ import java.util.regex.*;
 import javax.swing.JFrame;
 
 /**
+ * SubwayScreen.java
+ * Simulates and displays subway screen.
  * @author  Mahdi Ansari
- *
+ * @author Mark Guerta
+ * @author Saif Youssef
+ * @version 0.9
  */
 public class SubwayScreen {
+	/**
+	 * Unused constructor
+	 */
+	private SubwayScreen() {
+		
+	}
+	/**
+	 * Main method
+	 * @param args Command Line Arguments
+	 */
 	public static void main(String[] args) {
         // Runs the simulator 
 		Process process = null;        
@@ -76,6 +90,7 @@ public class SubwayScreen {
         String train;
         Pattern pattern = null;
         try {
+        	// Checks if args[0] contains a train number
             if (args[0].equals("T1") || args[0].equals("T2")|| args[0].equals("T3") ||args[0].equals("T4") || args[0].equals("T5") || args[0].equals("T6") 
             		|| args[0].equals("T7") || args[0].equals("T8")|| args[0].equals("T9") ||args[0].equals("T10") || args[0].equals("T11") || args[0].equals("T12"))
         		 pattern = Pattern.compile("("+ args[0] +"\\([RGB]\\d\\d, .\\))");
@@ -90,40 +105,44 @@ public class SubwayScreen {
         	e.printStackTrace();
         	System.exit(1);
         } 
-
+        
         WeatherDisplay weatherDisplay = null;
         TrainDisplay trainDisplay = null;
 		NewsDisplay newsDisplay = null;
+		ArrayList<String[]> stations = readMapCSV("map.csv");
+		// Creates new window
         JFrame frame = new JFrame();
-		
-		//newsApi.newsMain();
-
         try {
         	while (true) {
         		line = reader.readLine();
         		if (line != null) {
         		Matcher matcher = pattern.matcher(line);
         			if(matcher.find()) {
+        				// Formats and adds displays to the frame
         				if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
         					train = matcher.group(1);
-        					trainDisplay = new TrainDisplay(train, readMapCSV("map.csv"));
-        					weatherDisplay = new WeatherDisplay(frame);
-        					newsDisplay = new NewsDisplay(frame);
+        					trainDisplay = new TrainDisplay(train, stations);
+        					weatherDisplay = new WeatherDisplay();
+        					newsDisplay = new NewsDisplay();
+        					
         					if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
         						throw new Exception("Failed display construction");
-        					trainDisplay.formatTrainDisplay(frame);
+        					frame.add(trainDisplay.getDisplay());
+        					frame.add(newsDisplay.getDisplay());
+        					frame.add(weatherDisplay.getDisplay());
         					frame.setLayout(null);
         					frame.setSize(1095, 720);
         					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         					frame.setVisible(true);
         					frame.setResizable(false);
         				}
+        				// Updates display contents
         				newsDisplay.updateNewsDisplay();
         				weatherDisplay.updateWeatherDisplay();
-        		
-    					if (line.contains("F"))
+        				// Updates based on direction
+    					if (trainDisplay.getDirection().equals("F"))
     						trainDisplay.updateForward(line);
-    					else if (line.contains("B"))
+    					else if (trainDisplay.getDirection().equals("B"))
     						trainDisplay.updateBackward(line);
     					else
     						throw new Exception("Undefined direction");
@@ -139,6 +158,12 @@ public class SubwayScreen {
         	System.exit(1);
         }
     }
+	
+	/**
+	 * Extracts station data from map.csv
+	 * @param fileName File path for csv file
+	 * @return stations	Collection of station information
+	 */
 	public static ArrayList<String[]> readMapCSV(String fileName) {
 		BufferedReader reader = null;
 		ArrayList<String[]> stations = new ArrayList<String[]>();;
@@ -172,6 +197,5 @@ public class SubwayScreen {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 }

@@ -13,6 +13,7 @@ public class TrainDisplay {
 	private String direction;
 	private ArrayList<String[]> stationArray;
 	private JLabel[] stations;
+	private JLayeredPane display;
 	private int redFirst = -1;
 	private int blueFirst = -1;
 	private int greenFirst = -1;
@@ -100,25 +101,23 @@ public class TrainDisplay {
 		stations[3].setBounds(670, 0, 200, 180);
 		stations[4].setBounds(900, 0, 200, 180);
 	}
-		
 
-	public int getCurrentTrain() {
+	public int getCurrentStation() {
 		return currentStation;
 	}
 
+	public void setCurrentStation(int currentStation) {
+		this.currentStation = currentStation;
+	}
 
-	public void setCurrentTrain(int currentTrain) {
-		this.currentStation = currentTrain;
+	public String getLine() {
+		return Line;
 	}
-	
-	public JLabel[] getStation() {
-		return stations;
+
+	public void setLine(String line) {
+		Line = line;
 	}
-	
-	public void setStation(JLabel[] station) {
-		this.stations = station;
-	}
-	
+
 	public String getDirection() {
 		return direction;
 	}
@@ -126,79 +125,84 @@ public class TrainDisplay {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
-	
-	public String getLine() {
-		return Line;
+
+	public ArrayList<String[]> getStationArray() {
+		return stationArray;
 	}
-	
-	public void setLine(String line) {
-		Line = line;
+
+	public void setStationArray(ArrayList<String[]> stationArray) {
+		this.stationArray = stationArray;
 	}
-	
+
+	public JLabel[] getStations() {
+		return stations;
+	}
+
+	public void setStations(JLabel[] stations) {
+		this.stations = stations;
+	}
+
+	public JLayeredPane getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(JLayeredPane display) {
+		this.display = display;
+	}
+
 	public int getRedFirst() {
 		return redFirst;
 	}
-
 
 	public void setRedFirst(int redFirst) {
 		this.redFirst = redFirst;
 	}
 
-
 	public int getBlueFirst() {
 		return blueFirst;
 	}
-
 
 	public void setBlueFirst(int blueFirst) {
 		this.blueFirst = blueFirst;
 	}
 
-
 	public int getGreenFirst() {
 		return greenFirst;
 	}
-
 
 	public void setGreenFirst(int greenFirst) {
 		this.greenFirst = greenFirst;
 	}
 
-
 	public int getRedLast() {
 		return redLast;
 	}
-
 
 	public void setRedLast(int redLast) {
 		this.redLast = redLast;
 	}
 
-
 	public int getBlueLast() {
 		return blueLast;
 	}
-
 
 	public void setBlueLast(int blueLast) {
 		this.blueLast = blueLast;
 	}
 
-
 	public int getGreenLast() {
 		return greenLast;
 	}
-
 
 	public void setGreenLast(int greenLast) {
 		this.greenLast = greenLast;
 	}
 
 	// Formats train display
-	public void formatTrainDisplay(JFrame frame) {
+	public void formatTrainDisplay() {
 		// 1080x120 dimensions
 		String file = "stations720p.png";
-		JLayeredPane TrainPane = new JLayeredPane();
+		display = new JLayeredPane();
 		BufferedImage myPicture = null;
 
 		try {
@@ -209,11 +213,10 @@ public class TrainDisplay {
 		// Adds images and JLabels to JLayeredPane then to frame
 		JLabel imgStations = new JLabel(new ImageIcon(myPicture));
 		imgStations.setSize(imgStations.getPreferredSize());
-		TrainPane.add(imgStations, JLayeredPane.DEFAULT_LAYER);
-		TrainPane.setBounds(0, 0, 1080, 120);
+		display.add(imgStations, JLayeredPane.DEFAULT_LAYER);
+		display.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
-			TrainPane.add(stations[i], JLayeredPane.PALETTE_LAYER);
-		frame.add(TrainPane);
+			display.add(stations[i], JLayeredPane.PALETTE_LAYER);
 	}
 	// Updates train stations on screen
 	public void updateForward(String train) {
