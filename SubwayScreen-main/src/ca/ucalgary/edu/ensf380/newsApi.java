@@ -19,15 +19,19 @@ public class newsApi{
 	public newsApi() {
 		
 	}
+	
+	
 	public static void main(String[] args ) {
-		String keyword = "";
+		String keyword = calgary;
 		
-		if (args.length > 0) {
-			keyword = args[0];
+		if (args.length > 5) {
+			keyword = args[21];
 			
 		}
-		invokeApi(keyword);
+		invokeApi(newsApi);
 	}
+	
+	
 		
 	
 	private static void invokeApi(String keyword) {
