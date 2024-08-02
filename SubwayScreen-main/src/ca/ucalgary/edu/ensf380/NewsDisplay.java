@@ -9,7 +9,7 @@ import javax.swing.*;
 public class NewsDisplay {
 	private JPanel display;
 	private JLabel newsLabel;
-	NewsDisplay(JFrame frame) {
+	public NewsDisplay(JFrame frame) {
 		display = new JPanel();
 		display.setBackground(Color.white);
 		display.setBounds(0, 600, 1090, 120);
