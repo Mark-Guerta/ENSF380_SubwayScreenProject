@@ -21,7 +21,7 @@ public class newsApi{
 	}
 	
 	
-	public static void main(String[] args ) {
+	public static void mainNews(String[] args ) {
 		String keyword = "";
 		
 		if (args.length > 0) {

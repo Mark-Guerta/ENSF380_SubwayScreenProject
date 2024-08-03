@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="/Users/saifyoussef/Downloads/jackson-databind-2.13.0.jar"/>
 	<classpathentry kind="lib" path="/Users/saifyoussef/Downloads/json-20210307.jar"/>
 	<classpathentry kind="lib" path="/Users/saifyoussef/Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
