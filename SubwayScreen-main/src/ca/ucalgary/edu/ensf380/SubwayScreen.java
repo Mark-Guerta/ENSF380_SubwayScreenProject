@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.*;
@@ -105,7 +106,7 @@ public class SubwayScreen {
         	e.printStackTrace();
         	System.exit(1);
         } 
-        
+        String[] trainLine = new String[4];
         WeatherDisplay weatherDisplay = null;
         TrainDisplay trainDisplay = null;
 		NewsDisplay newsDisplay = null;
@@ -116,36 +117,46 @@ public class SubwayScreen {
         	while (true) {
         		line = reader.readLine();
         		if (line != null) {
-        		System.out.println(line);
-        		Matcher matcher = pattern.matcher(line);
-        			if(matcher.find()) {
-        				// Formats and adds displays to the frame
-        				if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
-        					train = matcher.group(1);
-        					trainDisplay = new TrainDisplay(train, stations);
-        					weatherDisplay = new WeatherDisplay();
-        					newsDisplay = new NewsDisplay();
-        					if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
-        						throw new Exception("Failed display construction");
-        					frame.add(trainDisplay.getDisplay());
-        					frame.add(newsDisplay.getDisplay());
-        					frame.add(weatherDisplay.getDisplay());
-        					frame.setLayout(null);
-        					frame.setSize(1095, 720);
-        					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        					frame.setVisible(true);
-        					frame.setResizable(false);
+        			System.out.println(line);
+        			for (int i = 0;i < 4; i++)
+        				if (trainLine[i] == null) {
+        					trainLine[i] = line;
+        					break;
         				}
-        				// Updates display contents
-        				newsDisplay.updateDisplay();
-        				weatherDisplay.updateDisplay();
-        				if (train.contains("F"))
-							trainDisplay.setDirection("F");
-						else
-							trainDisplay.setDirection("B");
-        				trainDisplay.updateDisplay();
-        			}
         		}
+        		if (trainLine[3] == null)
+        			continue;
+    			// Formats and adds displays to the frame
+    			if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
+            		Matcher matcher = pattern.matcher(trainLine[1]);
+        			if(matcher.find()) {
+        				train = matcher.group(1);
+        			}
+    				trainDisplay = new TrainDisplay(train, stations);
+   					weatherDisplay = new WeatherDisplay();
+   					newsDisplay = new NewsDisplay();
+   					
+    				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
+    					throw new Exception("Failed display construction");
+    				
+    				frame.add(trainDisplay.getDisplay());
+   					frame.add(newsDisplay.getDisplay());
+    				frame.add(weatherDisplay.getDisplay());
+    				frame.setLayout(null);
+    				frame.setSize(1095, 720);
+    				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    				frame.setVisible(true);
+   					frame.setResizable(false);
+    				}
+    			// Updates display contents
+    			newsDisplay.updateDisplay();
+    			weatherDisplay.updateDisplay();
+    			if (train.contains("F"))
+				trainDisplay.setDirection("F");
+				else
+					trainDisplay.setDirection("B");
+    			trainDisplay.updateDisplay();
+    			Arrays.fill(trainLine,null);
         	}
         } catch (IOException e) {
             e.printStackTrace();
