@@ -109,8 +109,9 @@ public class SubwayScreen {
         } 
         String[] trainLine = new String[4];
         String [] trains;
-        WeatherDisplay weatherDisplay = null;
         TrainDisplay trainDisplay = null;
+        WeatherDisplay weatherDisplay = null;
+        AdvertisementDisplay advertisementDisplay = null;
 		NewsDisplay newsDisplay = null;
 		stations = readMapCSV("map.csv");
 		// Creates new window
@@ -130,7 +131,7 @@ public class SubwayScreen {
         			continue;
         		trains = extractTrains(trainLine);
     			// Formats and adds displays to the frame
-    			if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
+    			if (trainDisplay == null) {
     				for (int i = 0; i < 12; i++) {
         				Matcher matcher = pattern.matcher(trains[i]);
             			if(matcher.find()) {
@@ -140,13 +141,15 @@ public class SubwayScreen {
     				trainDisplay = new TrainDisplay(train);
    					weatherDisplay = new WeatherDisplay();
    					newsDisplay = new NewsDisplay();
+   					advertisementDisplay = new AdvertisementDisplay(trains,train);
    					
-    				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null)
+    				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null || advertisementDisplay == null)
     					throw new Exception("Failed display construction");
     				
     				frame.add(trainDisplay.getDisplay());
    					frame.add(newsDisplay.getDisplay());
     				frame.add(weatherDisplay.getDisplay());
+    				frame.add(advertisementDisplay.getDisplay());
     				frame.setLayout(null);
     				frame.setSize(1095, 720);
     				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -161,9 +164,11 @@ public class SubwayScreen {
    	    			continue;
     				}
     			// Updates display contents
-    			if (trains[0] != null) {
+    			if (trains[11] != null) {
         			newsDisplay.updateDisplay();
         			weatherDisplay.updateDisplay();
+        			advertisementDisplay.setTrainList(trains);
+        			advertisementDisplay.updateDisplay();
         			if (train.contains("F"))
         				trainDisplay.setDirection("F");
     				else
