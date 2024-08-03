@@ -13,19 +13,25 @@ public class TrainDisplay extends Display {
 	private String direction;
 	private ArrayList<String[]> stationArray;
 	private JLabel[] stations;
-
-	private int redFirst = -1;
-	private int blueFirst = -1;
-	private int greenFirst = -1;
-	private int redLast = -1;
-	private int blueLast = -1;
-	private int greenLast = -1;
+	// Variables below stay local to the object 
+	private int redFirst;
+	private int blueFirst;
+	private int greenFirst;
+	private int redLast;
+	private int blueLast;
+	private int greenLast;
 	
-	public TrainDisplay(String train, ArrayList<String[]> stationArray) {
+	public TrainDisplay(String train) {
 		// Constructor initializes values based on map.csv
 		super();
 		this.stations = new JLabel[5];
-		this.stationArray = stationArray;
+		this.stationArray = SubwayScreen.stations;
+		redFirst = -1;
+		redLast = -1;
+		blueFirst = -1;
+		blueLast = -1;
+		greenFirst = -1;
+		greenLast = -1;
 		// Extracts station from train
 		stationMatcher(train);
 		try {
@@ -117,6 +123,7 @@ public class TrainDisplay extends Display {
 		display.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
 			display.add(stations[i], JLayeredPane.PALETTE_LAYER);
+
 	}
 
 	public int getCurrentStation() {
@@ -188,6 +195,7 @@ public class TrainDisplay extends Display {
 					stations[i].revalidate();
 				}	
 			}
+			Announcer.playAnnouncer(stationArray.get(currentStation + 1)[4]);
 		}
 		else{
 			currentStation = currentStation - 1;
@@ -206,22 +214,22 @@ public class TrainDisplay extends Display {
 					stations[j].revalidate();
 				}
 			}
+			Announcer.playAnnouncer(stationArray.get(currentStation - 1)[4]);
 		}
-		Announcer.playAnnouncer(stationArray.get(currentStation + 1)[4]);
+
 	}
 	// Sorts extracting station number from train
 	private void stationMatcher(String train) {
-		Pattern pattern = Pattern.compile("(\\d\\d)");
+		Pattern pattern = Pattern.compile("([RGB]\\d\\d)");
 		Matcher matcher =  pattern.matcher(train);
-		try {
-			if (matcher.find())
-				this.currentStation = Integer.parseInt(matcher.group(1));
-			else
-				throw new Exception("Matcher failed to find the station");
+		matcher.find();
+		String stationCode = matcher.group(1);
+		for (int i = 0; i < stationArray.size(); i++) {
+			if (stationCode.equals(stationArray.get(i)[3])) {
+				currentStation = Integer.parseInt(stationArray.get(i)[0]);
+				break;
+			}
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
+
 	}
 }

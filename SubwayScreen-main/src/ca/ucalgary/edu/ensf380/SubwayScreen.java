@@ -46,6 +46,7 @@ public class SubwayScreen {
 	/**
 	 * Unused constructor
 	 */
+	public static ArrayList<String[]> stations;
 	private SubwayScreen() {
 		
 	}
@@ -93,8 +94,8 @@ public class SubwayScreen {
         Pattern pattern = null;
         try {
         	// Checks if args[0] contains a train number
-            if (args[0].matches("T\\d+"))
-        		 pattern = Pattern.compile("("+ args[0] +"\\([RGB]\\d\\d, .\\))");
+            if (args[0].matches("T[1-9]") || args[0].matches("T1[0-2]"))
+        		 pattern = Pattern.compile("("+ args[0] +"\\([RGB]\\d\\d, [FB]\\))");
             else
             	throw new IllegalArgumentException("Invalid argument for train");
         }
@@ -107,10 +108,11 @@ public class SubwayScreen {
         	System.exit(1);
         } 
         String[] trainLine = new String[4];
+        String [] trains;
         WeatherDisplay weatherDisplay = null;
         TrainDisplay trainDisplay = null;
 		NewsDisplay newsDisplay = null;
-		ArrayList<String[]> stations = readMapCSV("map.csv");
+		stations = readMapCSV("map.csv");
 		// Creates new window
         JFrame frame = new JFrame();
         try {
@@ -126,13 +128,16 @@ public class SubwayScreen {
         		}
         		if (trainLine[3] == null)
         			continue;
+        		trains = extractTrains(trainLine);
     			// Formats and adds displays to the frame
     			if (trainDisplay == null && newsDisplay == null && weatherDisplay == null) {
-            		Matcher matcher = pattern.matcher(trainLine[1]);
-        			if(matcher.find()) {
-        				train = matcher.group(1);
-        			}
-    				trainDisplay = new TrainDisplay(train, stations);
+    				for (int i = 0; i < 12; i++) {
+        				Matcher matcher = pattern.matcher(trains[i]);
+            			if(matcher.find()) {
+            				train = matcher.group(1);
+            			}
+    				}
+    				trainDisplay = new TrainDisplay(train);
    					weatherDisplay = new WeatherDisplay();
    					newsDisplay = new NewsDisplay();
    					
@@ -147,16 +152,26 @@ public class SubwayScreen {
     				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     				frame.setVisible(true);
    					frame.setResizable(false);
+   					if (trainDisplay.getDirection().equals("F"))
+   						Announcer.playAnnouncer(stations.get(trainDisplay.getCurrentStation() + 1)[4]);
+   					else
+   						Announcer.playAnnouncer(stations.get(trainDisplay.getCurrentStation() - 1)[4]);
+   	    			Arrays.fill(trainLine,null);
+   	    			Arrays.fill(trains,null);
+   	    			continue;
     				}
     			// Updates display contents
-    			newsDisplay.updateDisplay();
-    			weatherDisplay.updateDisplay();
-    			if (train.contains("F"))
-				trainDisplay.setDirection("F");
-				else
-					trainDisplay.setDirection("B");
-    			trainDisplay.updateDisplay();
-    			Arrays.fill(trainLine,null);
+    			if (trains[0] != null) {
+        			newsDisplay.updateDisplay();
+        			weatherDisplay.updateDisplay();
+        			if (train.contains("F"))
+        				trainDisplay.setDirection("F");
+    				else
+    					trainDisplay.setDirection("B");
+        			trainDisplay.updateDisplay();
+    	    		Arrays.fill(trainLine,null);
+    	    		Arrays.fill(trains,null);
+    			}
         	}
         } catch (IOException e) {
             e.printStackTrace();
@@ -206,5 +221,27 @@ public class SubwayScreen {
 				e.printStackTrace();
 			}
 		}
+	}
+	public static String[] extractTrains(String[] trainLine) {
+		Pattern trainPattern = Pattern.compile("T\\d+?\\([RGB]\\d\\d, [FB]\\)");
+
+		String[] trains = new String[12];
+		for (int i = 1; i < 4; i++) {
+			Matcher matcher = trainPattern.matcher(trainLine[i]);
+			for (int j = 0; j < 4; j++) {
+				matcher.find();
+				if (i == 1) {
+					trains[j] = matcher.group();
+				}
+				else if (i == 2) {
+					trains[j + 4] = matcher.group();
+				}
+				else if (i == 3) {
+					trains[j + 8] = matcher.group();
+				}
+			}
+		}
+
+		return trains;
 	}
 }

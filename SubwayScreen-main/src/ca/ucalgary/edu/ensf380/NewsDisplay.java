@@ -39,6 +39,7 @@ public class NewsDisplay extends Display{
 	/**
 	 * Updates display and fetches data from newsApi class
 	 */
+	/**
 	private void scrollTimer(){
 		timer = new Timer(50, new ActionListener() {
 			public void actionPerformed(ActionEvent e){
@@ -52,9 +53,10 @@ public class NewsDisplay extends Display{
 
 					});
 		timwe.start();
+		*/
 	public void updateDisplay() {
 		// Requirements: update the newsDisplay with using the description string variable in  invokeAPI of newsApi.
-		newsLabel.setText(newsData);
+		newsLabel.setText("Test");
 		newsLabel.revalidate();
 	}
 }
