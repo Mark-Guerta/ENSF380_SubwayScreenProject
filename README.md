@@ -41,3 +41,8 @@
   <br> T1 Calgary
   <br> T7 Ottawa Science
 </p>
+
+### JUnit Testing
+<p>
+  Download JUnit 5 on Eclipse using the intellisense tool. To run the JUnit tests, go to src\ca\ucalgary\edu\ensf380 and find the class files with test and then run each one independently.
+</p>
