@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 public class weatherReportParse {
 
-	public static void mainWeather(String[] args) {
+	public static void main(String[] args) {
 		if (args.length == 0) {
 			System.out.println("enter city name using command line");
 			return;
