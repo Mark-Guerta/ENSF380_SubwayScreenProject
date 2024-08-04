@@ -4,7 +4,7 @@
   The database used for this program is mySQL 8.0.38. 
   <ol>
     <li>
-       Install: https://dev.mysql.com/downloads/workbench/.
+       Install mySQL using the mySQL Installer. Link: https://dev.mysql.com/downloads/windows/installer/8.0.html
     </li>
     <li>
       Within the png.sql file. Please copy the absolute file path of each photo in SubwayScreen-main\ads and paste into the VALUE field of the sql script.
