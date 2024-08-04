@@ -36,7 +36,7 @@
 
 <p>
   There are three paramaters you can set in this program. The first parameter is the train you wish to track. There are a total of 12 trains denoted by T1 - T12. This is a mandatory argument as without it the program will throw an InvalidArgumentException.
-  The second paratemer is the city name. This is used to fetch the weather. This parameter is also mandatory. Finally, the third parameter is the news key word. Choose a topic to display or leave empty for random news.
+  The second parameter is the city name. This is used to fetch the weather. This parameter is also mandatory. Finally, the third parameter is the news key word. Choose a topic to display or leave empty for random news.
   <br> Here are two examples:
   <br> T1 Calgary
   <br> T7 Ottawa Science
