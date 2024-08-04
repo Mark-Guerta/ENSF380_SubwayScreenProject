@@ -7,13 +7,20 @@ import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-public class TrainDisplay extends Display {
+/**
+ * 	TrainDisplay.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
+public final class TrainDisplay extends Display {
 	private int currentStation;
 	private String Line;
 	private String direction;
 	private ArrayList<String[]> stationArray;
 	private JLabel[] stations;
-	// Variables below stay local to the object 
+	private Announcer announcer;
+
 	private int redFirst;
 	private int blueFirst;
 	private int greenFirst;
@@ -21,11 +28,12 @@ public class TrainDisplay extends Display {
 	private int blueLast;
 	private int greenLast;
 	
-	public TrainDisplay(String train) {
+	public TrainDisplay(String train, ArrayList<String[]> stationArray, Announcer announcer) {
 		// Constructor initializes values based on map.csv
 		super();
 		this.stations = new JLabel[5];
-		this.stationArray = SubwayScreen.stations;
+		this.stationArray = stationArray;
+		this.announcer = announcer;
 		redFirst = -1;
 		redLast = -1;
 		blueFirst = -1;
@@ -123,9 +131,72 @@ public class TrainDisplay extends Display {
 		display.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
 			display.add(stations[i], JLayeredPane.PALETTE_LAYER);
-
 	}
 
+	// Updates train stations on screen
+	public void updateDisplay() {
+		boolean check = false;
+		if(direction.equals("F")) {
+			currentStation = currentStation + 1;
+			for (int i = 0; i < 5; i++) {
+				// Checks if at the end of line
+				
+				if (currentStation == redLast || currentStation == blueLast || currentStation == greenLast) {
+					check = true;
+					stations[i].setText("");
+					stations[i].revalidate();
+				}
+				else if(check) {
+					stations[i].setText("");
+					stations[i].revalidate();
+				}
+				else {
+					stations[i].setText(stationArray.get(currentStation + i)[4]);
+					stations[i].revalidate();
+				}	
+			}
+			announcer.setStation(stationArray.get(currentStation + 1)[4]);
+			announcer.playAnnouncer();
+		}
+		else{
+			currentStation = currentStation - 1;
+			for (int j = 0; j < 5; j++) {	
+				if (currentStation == redFirst || currentStation == blueFirst || currentStation == greenFirst) {
+					check = true;
+					stations[j].setText("");
+					stations[j].revalidate();
+				}
+				else if(check) {
+					stations[j].setText("");
+					stations[j].revalidate(); 
+				}	
+				else {
+					stations[j].setText(stationArray.get(currentStation - j)[4]);
+					stations[j].revalidate();
+				}
+			}
+			announcer.setStation(stationArray.get(currentStation - 1)[4]);
+			announcer.playAnnouncer();
+		}
+
+	}
+	/** 
+	 * Sorts extracting station number from train
+	 * @param train Train to extract station code
+	 */
+	private void stationMatcher(String train) {
+		Pattern pattern = Pattern.compile("([RGB]\\d\\d)");
+		Matcher matcher =  pattern.matcher(train);
+		matcher.find();
+		String stationCode = matcher.group(1);
+		for (int i = 0; i < stationArray.size(); i++) {
+			if (stationCode.equals(stationArray.get(i)[3])) {
+				currentStation = Integer.parseInt(stationArray.get(i)[0]);
+				break;
+			}
+		}
+	}
+	// Setters and Getters
 	public int getCurrentStation() {
 		return currentStation;
 	}
@@ -166,70 +237,60 @@ public class TrainDisplay extends Display {
 		this.stations = stations;
 	}
 
-	public JLayeredPane getDisplay() {
-		return display;
+	public Announcer getAnnouncer() {
+		return announcer;
 	}
 
-	public void setDisplay(JLayeredPane display) {
-		this.display = display;
+	public void setAnnouncer(Announcer announcer) {
+		this.announcer = announcer;
 	}
-	// Updates train stations on screen
-	public void updateDisplay() {
-		boolean check = false;
-		if(direction.equals("F")) {
-			currentStation = currentStation + 1;
-			for (int i = 0; i < 5; i++) {
-				// Checks if at the end of line
-				
-				if (currentStation == redLast || currentStation == blueLast || currentStation == greenLast) {
-					check = true;
-					stations[i].setText("");
-					stations[i].revalidate();
-				}
-				else if(check) {
-					stations[i].setText("");
-					stations[i].revalidate();
-				}
-				else {
-					stations[i].setText(stationArray.get(currentStation + i)[4]);
-					stations[i].revalidate();
-				}	
-			}
-			Announcer.playAnnouncer(stationArray.get(currentStation + 1)[4]);
-		}
-		else{
-			currentStation = currentStation - 1;
-			for (int j = 0; j < 5; j++) {	
-				if (currentStation == redFirst || currentStation == blueFirst || currentStation == greenFirst) {
-					check = true;
-					stations[j].setText("");
-					stations[j].revalidate();
-				}
-				else if(check) {
-					stations[j].setText("");
-					stations[j].revalidate(); 
-				}	
-				else {
-					stations[j].setText(stationArray.get(currentStation - j)[4]);
-					stations[j].revalidate();
-				}
-			}
-			Announcer.playAnnouncer(stationArray.get(currentStation - 1)[4]);
-		}
 
+	public int getRedFirst() {
+		return redFirst;
 	}
-	// Sorts extracting station number from train
-	private void stationMatcher(String train) {
-		Pattern pattern = Pattern.compile("([RGB]\\d\\d)");
-		Matcher matcher =  pattern.matcher(train);
-		matcher.find();
-		String stationCode = matcher.group(1);
-		for (int i = 0; i < stationArray.size(); i++) {
-			if (stationCode.equals(stationArray.get(i)[3])) {
-				currentStation = Integer.parseInt(stationArray.get(i)[0]);
-				break;
-			}
-		}
 
+	public void setRedFirst(int redFirst) {
+		this.redFirst = redFirst;
 	}
+
+	public int getBlueFirst() {
+		return blueFirst;
+	}
+
+	public void setBlueFirst(int blueFirst) {
+		this.blueFirst = blueFirst;
+	}
+
+	public int getGreenFirst() {
+		return greenFirst;
+	}
+
+	public void setGreenFirst(int greenFirst) {
+		this.greenFirst = greenFirst;
+	}
+
+	public int getRedLast() {
+		return redLast;
+	}
+
+	public void setRedLast(int redLast) {
+		this.redLast = redLast;
+	}
+
+	public int getBlueLast() {
+		return blueLast;
+	}
+
+	public void setBlueLast(int blueLast) {
+		this.blueLast = blueLast;
+	}
+
+	public int getGreenLast() {
+		return greenLast;
+	}
+
+	public void setGreenLast(int greenLast) {
+		this.greenLast = greenLast;
+	}
+	
 }
