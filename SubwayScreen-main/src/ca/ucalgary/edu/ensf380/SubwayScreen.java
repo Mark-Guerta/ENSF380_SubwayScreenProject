@@ -141,9 +141,6 @@ public class SubwayScreen {
    					weatherDisplay = new WeatherDisplay();
    					newsDisplay = new NewsDisplay(args);
    					advertisementDisplay = new AdvertisementDisplay(trainList,train, stationArray);
-   					// Checks if constructor failed
-    				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null || advertisementDisplay == null)
-    					throw new Exception("Failed display construction");
     				// Adds displays to main screen and formats main screen
     				frame.add(trainDisplay.getDisplay());
    					frame.add(newsDisplay.getDisplay());
