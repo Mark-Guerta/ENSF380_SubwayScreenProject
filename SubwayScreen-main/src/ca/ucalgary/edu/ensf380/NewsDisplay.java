@@ -9,54 +9,69 @@ import javax.swing.*;
  * 	NewsDisplay.java
  * 	@author Mark Guerta
  * 	@author Saif Youssef
- *  @version 0.9
+ *  @version 1.0
  */
-public class NewsDisplay extends Display{
+public final class NewsDisplay extends Display{
 	private JLabel newsLabel;
-	private Timer timer;
-	private int parseIndex;
-	
+	private String[] newsDescription;
+	private int newsPosition;
 	/**
 	 * Formats display and fetches data from newsApi class
+	 * @param args 
 	 */
-	public NewsDisplay() {
+	public NewsDisplay(String[] args) {
 		super();
 		display.setOpaque(true);
 		display.setBackground(Color.white);
 		display.setBounds(0, 600, 1090, 120);
 		display.setLayout(new GridBagLayout());
-		// Add newsApi.newsMain() instead of substitute text
-		
-		newsLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+		newsDescription = NewsAPI.mainNews(args);
+		// Add newsDescription[newsPosition++] when testing API calls into the JLabel instead of Lorem ipsum
+		// Test string: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		newsLabel = new JLabel(newsDescription[newsPosition++]);
 		display.add(newsLabel);
-	}
-	public JLabel getNewsLabel() {
-		return newsLabel;
-	}
-	public void setNewsLabel(JLabel newsLabel) {
-		this.newsLabel = newsLabel;
 	}
 	/**
 	 * Updates display and fetches data from newsApi class
 	 */
-	/**
-	private void scrollTimer(){
-		timer = new Timer(50, new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				parseIndex--:
-				if (parseIndex < newsLabel.width){
-					parseIndex = newsDisplay.getwidth();
-				}
-				newsLabel.setLocation(parseIndex, newLabel.getY()):
-					
-			}
-
-					});
-		timwe.start();
-		*/
+	@Override
 	public void updateDisplay() {
-		// Requirements: update the newsDisplay with using the description string variable in  invokeAPI of newsApi.
-		newsLabel.setText("Test");
+		while (newsDescription[newsPosition] == null) {
+			if (newsPosition == newsDescription.length - 1) {
+				newsPosition = 0;
+				break;
+			}
+			newsPosition++;
+		}
+		// add newsDescription[newsPosition] to setText instead of "Test"
+		newsLabel.setText(newsDescription[newsPosition]);
 		newsLabel.revalidate();
 	}
+	// Getter and Setters
+	public JLabel getNewsLabel() {
+		return newsLabel;
+	}
+	
+	public void setNewsLabel(JLabel newsLabel) {
+		this.newsLabel = newsLabel;
+	}
+	
+	public String[] getNewsDescription() {
+		return newsDescription;
+	}
+	
+	public void setNewsDescription(String[] newsDescription) {
+		this.newsDescription = newsDescription;
+	}
+	
+	public int getNewsPosition() {
+		return newsPosition;
+	}
+	
+	public void setNewsPosition(int newsPosition) {
+		this.newsPosition = newsPosition;
+	}
+	
+
+
 }

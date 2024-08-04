@@ -6,16 +6,17 @@ import java.time.*;
 
 import javax.swing.*;
 /**
- * WeatherDisplay.java
- * @author Mark Guerta
- * @author Saif Youssef
+ * 	WeatherDisplay.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
  */
-public class WeatherDisplay extends Display{
+public final class WeatherDisplay extends Display{
 	private JLabel timeLabel;
 	/**
 	 *  Formats and fetches weather data from weatherReportParse
 	 */
-	public WeatherDisplay() {
+	public WeatherDisplay(String[] args) {
 		super();
 		display.setBounds(0, 120, 432, 480);
 		display.setLayout(new GridBagLayout());
@@ -24,7 +25,7 @@ public class WeatherDisplay extends Display{
 		timeLabel = new JLabel(LocalDateTime.now().toString());
 		display.add(timeLabel);
 
-		weatherReportParse.weatherMain();
+		weatherReportParse.weatherMain(args);
 	}
 	/**
 	 * Updates and fetches weather data from weatherReportParse
@@ -34,6 +35,7 @@ public class WeatherDisplay extends Display{
 		timeLabel.revalidate();
 		display.revalidate();
 	}
+	// Setters and getters
 	public JLabel getTimeLabel() {
 		return timeLabel;
 	}
