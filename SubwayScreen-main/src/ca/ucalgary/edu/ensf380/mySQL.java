@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 
 public class mySQL {
 
-	public static JLabel[] getAds() {
-		JLabel[] advertisement = new JLabel[7];
+	public static ImageIcon[] getAds() {
+		ImageIcon[] advertisement = new ImageIcon[7];
 		try {
 			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "ENSF380FinalProject");
 			
@@ -27,10 +27,7 @@ public class mySQL {
 				
 				File adFile = new File(filePath);
 				if (adFile.exists()) {
-
-					JLabel imageLabel = new JLabel(resizeImage(adFile, 648, 480));
-					imageLabel.setSize(648,480);
-					advertisement[i++] = imageLabel;
+					advertisement[i++] = resizeImage(adFile, 648, 480);
 				}else {
 					System.out.println(" file cannot be fetched");
 				}	

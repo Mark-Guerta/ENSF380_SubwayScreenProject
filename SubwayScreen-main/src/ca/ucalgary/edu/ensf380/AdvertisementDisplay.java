@@ -5,29 +5,37 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.TimerTask;
+import java.util.Timer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class AdvertisementDisplay extends Display {
+	private JLayeredPane map;
+	private JLabel adLabel;
 	private JLabel[] trains;
 	private String currentTrain;
 	private String[] trainList;
 	private ArrayList<String[]> stationArray;
 	private ArrayList<JLabel> stationLabel;
-	private JLabel[] advertisement;
-	private JLayeredPane map;
+	private ImageIcon[] adPhoto;
+	private int adPosition;
+
 	public AdvertisementDisplay(String[] trainList, String currentTrain) {
 		super();
 		map = new JLayeredPane();
 		stationLabel = new ArrayList<JLabel>();
+		trains = new JLabel[12];
+		adLabel = new JLabel();
 		stationArray = SubwayScreen.stations;
-		setAdvertisement(mySQL.getAds());
+		adPhoto = mySQL.getAds();
+		adPosition = 0;
 		String[] fileNames = {"TrainSymbolCurrentRed.png","TrainSymbolCurrentBlue.png","TrainSymbolCurrentGreen.png"
 				,"TrainSymbolRed.png","TrainSymbolBlue.png","TrainSymbolGreen.png"};
-		trains = new JLabel[12];
+		
+		
 		for(int station = 1; station < stationArray.size();station++) {
 			stationLabel.add(new JLabel(""));
 			stationLabel.get(station - 1).setLocation((int) (648*(Double.parseDouble(stationArray.get(station)[5])/1600)), (int) (480*(Double.parseDouble(stationArray.get(station)[6])/1600)));
@@ -35,6 +43,7 @@ public class AdvertisementDisplay extends Display {
 			stationLabel.get(station - 1).setSize(10,10);
 			map.add(stationLabel.get(station - 1), Integer.valueOf(0));
 		}
+		
 		this.trainList = trainList;
 		for (int index1 = 0; index1 < trainList.length; index1++) {
 			if(trainList[index1].contains("R")) {
@@ -73,25 +82,30 @@ public class AdvertisementDisplay extends Display {
 					break;
 				}
 		}
+		
 		for(JLabel train: trains) {
 			map.add(train, Integer.valueOf(1));
 		}
+		adLabel.setSize(648, 480);
 		map.setLocation( 100, 125);
 		map.setSize(648,480);
 		display.setOpaque(true);
 		display.setBounds(432,120,648,480);
 		display.setBackground(Color.white);
-		display.add(map);
+		display.add(adLabel, Integer.valueOf(1));
+		display.add(map, Integer.valueOf(0));
+		adLabel.setIcon(adPhoto[adPosition++]);
+		adTimer();
 	}
 
 	@Override
 	public void updateDisplay() {
 		// TODO Auto-generated method stub
+		adTimer();
 		for (int i = 0; i < trainList.length; i++) {
 			if(trainList[i].contains("R")) {
 				extractStationCoords(trainList[i], trains[i]);
 			}
-
 			else if (trainList[i].contains("G")){
 				extractStationCoords(trainList[i], trains[i]);
 			}
@@ -99,6 +113,7 @@ public class AdvertisementDisplay extends Display {
 				extractStationCoords(trainList[i], trains[i]);
 			}
 		}
+
 		display.revalidate();
 	}
 	public ImageIcon resizeImage(File imgFile, int x, int y) {
@@ -115,7 +130,7 @@ public class AdvertisementDisplay extends Display {
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         return scaledIcon;
 	}
-	public void extractStationCoords(String train, JLabel trainLabel) {
+	private void extractStationCoords(String train, JLabel trainLabel) {
 		Pattern patternStationCode = Pattern.compile("([RGB]\\d\\d)");
 		Matcher matcher = patternStationCode.matcher(train);
 		String stationCode = null;
@@ -137,6 +152,33 @@ public class AdvertisementDisplay extends Display {
 			}
 		}
 	}
+	
+	private void adTimer() {
+		Timer timer5 = new Timer();
+		TimerTask task5 = new TimerTask() {
+			@Override
+			public void run() {
+				if (adPosition < adPhoto.length)
+					adLabel.setIcon(adPhoto[adPosition++]);
+				else {
+					adPosition = 0;
+					adLabel.setIcon(adPhoto[adPosition++]);
+				}
+				adLabel.setVisible(true);
+			}
+		};
+		
+		Timer timer10 = new Timer();
+		TimerTask task10 = new TimerTask() {
+			@Override
+			public void run() {
+				adLabel.setVisible(false);
+				timer5.schedule(task5, 5000);
+			}
+		};
+		timer10.schedule(task10, 10000);
+	}
+	
 	public JLabel[] getTrains() {
 		return trains;
 	}
@@ -161,11 +203,19 @@ public class AdvertisementDisplay extends Display {
 		this.currentTrain = currentTrain;
 	}
 
-	public JLabel[] getAdvertisement() {
-		return advertisement;
+	public ImageIcon[] getadPhoto() {
+		return adPhoto;
 	}
 
-	public void setAdvertisement(JLabel[] advertisement) {
-		this.advertisement = advertisement;
+	public void setadPhoto(ImageIcon[] adPhoto) {
+		this.adPhoto = adPhoto;
+	}
+
+	public int getAdPosition() {
+		return adPosition;
+	}
+
+	public void setAdPosition(int adPosition) {
+		this.adPosition = adPosition;
 	}
 }
