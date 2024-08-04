@@ -138,7 +138,7 @@ public class SubwayScreen {
             			}
     				}
     				trainDisplay = new TrainDisplay(train, stationArray, announcer);
-   					weatherDisplay = new WeatherDisplay();
+   					weatherDisplay = new WeatherDisplay(args);
    					newsDisplay = new NewsDisplay(args);
    					advertisementDisplay = new AdvertisementDisplay(trainList,train, stationArray);
     				// Adds displays to main screen and formats main screen

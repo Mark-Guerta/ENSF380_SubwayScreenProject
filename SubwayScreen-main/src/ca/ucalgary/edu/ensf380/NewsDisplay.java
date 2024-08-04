@@ -37,7 +37,7 @@ public final class NewsDisplay extends Display{
 	@Override
 	public void updateDisplay() {
 		while (newsDescription[newsPosition] == null) {
-			if (newsPosition == newsDescription.length) {
+			if (newsPosition == newsDescription.length - 1) {
 				newsPosition = 0;
 				break;
 			}

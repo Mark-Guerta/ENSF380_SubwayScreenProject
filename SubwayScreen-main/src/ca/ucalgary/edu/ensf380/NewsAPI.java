@@ -20,8 +20,8 @@ public class NewsAPI{
 	public static String[] mainNews(String[] args ) {
 		String keyword = "";
 		
-		if (args.length > 1) {
-			keyword = args[1];
+		if (args.length > 2) {
+			keyword = args[2];
 		}
 		return invokeApi(keyword);
 	}
@@ -64,7 +64,7 @@ public class NewsAPI{
 				JSONObject jsonObject = (JSONObject) parse.parse(String.valueOf(informationString.toString()));
 				JSONArray dataArray = (JSONArray) jsonObject.get("data");
 				newsDescription = new String[dataArray.size()];
-				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\\.\")");
+				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\")");
 
 				for (int i = 0; i < dataArray.size(); i++) {
 					JSONObject newsData = (JSONObject) dataArray.get(0);

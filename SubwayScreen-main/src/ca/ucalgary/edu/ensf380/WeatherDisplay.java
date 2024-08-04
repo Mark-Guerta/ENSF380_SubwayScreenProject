@@ -16,7 +16,7 @@ public final class WeatherDisplay extends Display{
 	/**
 	 *  Formats and fetches weather data from weatherReportParse
 	 */
-	public WeatherDisplay() {
+	public WeatherDisplay(String[] args) {
 		super();
 		display.setBounds(0, 120, 432, 480);
 		display.setLayout(new GridBagLayout());
@@ -25,7 +25,7 @@ public final class WeatherDisplay extends Display{
 		timeLabel = new JLabel(LocalDateTime.now().toString());
 		display.add(timeLabel);
 
-		weatherReportParse.weatherMain();
+		weatherReportParse.weatherMain(args);
 	}
 	/**
 	 * Updates and fetches weather data from weatherReportParse
