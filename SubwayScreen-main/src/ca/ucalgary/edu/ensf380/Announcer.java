@@ -16,6 +16,9 @@ import javax.sound.sampled.Clip;
 
 public class Announcer {
 	private String station;
+	/**
+	 * Creates an empty Announcer
+	 */
 	public Announcer() {
 		
 	}

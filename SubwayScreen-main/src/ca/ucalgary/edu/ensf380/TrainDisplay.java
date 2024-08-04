@@ -20,7 +20,7 @@ public final class TrainDisplay extends Display {
 	private ArrayList<String[]> stationArray;
 	private JLabel[] stations;
 	private Announcer announcer;
-	// Variables below stay local to the object 
+
 	private int redFirst;
 	private int blueFirst;
 	private int greenFirst;
@@ -180,7 +180,10 @@ public final class TrainDisplay extends Display {
 		}
 
 	}
-	// Sorts extracting station number from train
+	/** 
+	 * Sorts extracting station number from train
+	 * @param train Train to extract station code
+	 */
 	private void stationMatcher(String train) {
 		Pattern pattern = Pattern.compile("([RGB]\\d\\d)");
 		Matcher matcher =  pattern.matcher(train);

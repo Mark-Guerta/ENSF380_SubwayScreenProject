@@ -31,15 +31,10 @@ public final class NewsDisplay extends Display{
 		newsLabel = new JLabel(newsDescription[newsPosition++]);
 		display.add(newsLabel);
 	}
-	public JLabel getNewsLabel() {
-		return newsLabel;
-	}
-	public void setNewsLabel(JLabel newsLabel) {
-		this.newsLabel = newsLabel;
-	}
 	/**
 	 * Updates display and fetches data from newsApi class
 	 */
+	@Override
 	public void updateDisplay() {
 		while (newsDescription[newsPosition] == null) {
 			if (newsPosition == newsDescription.length) {
@@ -52,4 +47,31 @@ public final class NewsDisplay extends Display{
 		newsLabel.setText(newsDescription[newsPosition]);
 		newsLabel.revalidate();
 	}
+	// Getter and Setters
+	public JLabel getNewsLabel() {
+		return newsLabel;
+	}
+	
+	public void setNewsLabel(JLabel newsLabel) {
+		this.newsLabel = newsLabel;
+	}
+	
+	public String[] getNewsDescription() {
+		return newsDescription;
+	}
+	
+	public void setNewsDescription(String[] newsDescription) {
+		this.newsDescription = newsDescription;
+	}
+	
+	public int getNewsPosition() {
+		return newsPosition;
+	}
+	
+	public void setNewsPosition(int newsPosition) {
+		this.newsPosition = newsPosition;
+	}
+	
+
+
 }
