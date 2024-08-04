@@ -17,12 +17,14 @@ public class AdvertisementDisplay extends Display {
 	private String[] trainList;
 	private ArrayList<String[]> stationArray;
 	private ArrayList<JLabel> stationLabel;
+	private JLabel[] advertisement;
 	private JLayeredPane map;
 	public AdvertisementDisplay(String[] trainList, String currentTrain) {
 		super();
 		map = new JLayeredPane();
 		stationLabel = new ArrayList<JLabel>();
 		stationArray = SubwayScreen.stations;
+		setAdvertisement(mySQL.getAds());
 		String[] fileNames = {"TrainSymbolCurrentRed.png","TrainSymbolCurrentBlue.png","TrainSymbolCurrentGreen.png"
 				,"TrainSymbolRed.png","TrainSymbolBlue.png","TrainSymbolGreen.png"};
 		trains = new JLabel[12];
@@ -157,5 +159,13 @@ public class AdvertisementDisplay extends Display {
 
 	public void setCurrentTrain(String currentTrain) {
 		this.currentTrain = currentTrain;
+	}
+
+	public JLabel[] getAdvertisement() {
+		return advertisement;
+	}
+
+	public void setAdvertisement(JLabel[] advertisement) {
+		this.advertisement = advertisement;
 	}
 }
