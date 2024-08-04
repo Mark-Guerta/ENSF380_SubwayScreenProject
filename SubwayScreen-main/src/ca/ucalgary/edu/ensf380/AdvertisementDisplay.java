@@ -11,8 +11,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-public class AdvertisementDisplay extends Display {
+/**
+ * 	AdvertisementDisplay.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
+public final class AdvertisementDisplay extends Display {
 	private JLayeredPane map;
 	private JLabel adLabel;
 	private JLabel[] trains;
@@ -23,14 +28,14 @@ public class AdvertisementDisplay extends Display {
 	private ImageIcon[] adPhoto;
 	private int adPosition;
 
-	public AdvertisementDisplay(String[] trainList, String currentTrain) {
+	public AdvertisementDisplay(String[] trainList, String currentTrain, ArrayList<String[]>stationArray) {
 		super();
 		map = new JLayeredPane();
 		stationLabel = new ArrayList<JLabel>();
 		trains = new JLabel[12];
 		adLabel = new JLabel();
-		stationArray = SubwayScreen.stations;
-		adPhoto = mySQL.getAds();
+		this.stationArray = stationArray;
+		adPhoto = MySQL.getAds();
 		adPosition = 0;
 		String[] fileNames = {"TrainSymbolCurrentRed.png","TrainSymbolCurrentBlue.png","TrainSymbolCurrentGreen.png"
 				,"TrainSymbolRed.png","TrainSymbolBlue.png","TrainSymbolGreen.png"};

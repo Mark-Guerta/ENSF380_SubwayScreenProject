@@ -40,13 +40,13 @@ import javax.swing.JFrame;
  * @author  Mahdi Ansari
  * @author Mark Guerta
  * @author Saif Youssef
- * @version 0.9
+ * @version 1.0
  */
 public class SubwayScreen {
 	/**
 	 * Unused constructor
 	 */
-	public static ArrayList<String[]> stations;
+	
 	private SubwayScreen() {
 		
 	}
@@ -107,13 +107,15 @@ public class SubwayScreen {
         	e.printStackTrace();
         	System.exit(1);
         } 
+        ArrayList<String[]> stationArray;
         String[] trainLine = new String[4];
-        String [] trains;
+        String [] trainList;
         TrainDisplay trainDisplay = null;
         WeatherDisplay weatherDisplay = null;
         AdvertisementDisplay advertisementDisplay = null;
 		NewsDisplay newsDisplay = null;
-		stations = readMapCSV("map.csv");
+		Announcer announcer = new Announcer();
+		stationArray = readMapCSV("map.csv");
 		// Creates new window
         JFrame frame = new JFrame();
         try {
@@ -129,19 +131,19 @@ public class SubwayScreen {
         		}
         		if (trainLine[3] == null)
         			continue;
-        		trains = extractTrains(trainLine);
+        		trainList = extractTrains(trainLine);
     			// Formats and adds displays to the frame
     			if (trainDisplay == null) {
     				for (int i = 0; i < 12; i++) {
-        				Matcher matcher = pattern.matcher(trains[i]);
+        				Matcher matcher = pattern.matcher(trainList[i]);
             			if(matcher.find()) {
             				train = matcher.group(1);
             			}
     				}
-    				trainDisplay = new TrainDisplay(train);
+    				trainDisplay = new TrainDisplay(train, stationArray, announcer);
    					weatherDisplay = new WeatherDisplay();
-   					newsDisplay = new NewsDisplay();
-   					advertisementDisplay = new AdvertisementDisplay(trains,train);
+   					newsDisplay = new NewsDisplay(args);
+   					advertisementDisplay = new AdvertisementDisplay(trainList,train, stationArray);
    					
     				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null || advertisementDisplay == null)
     					throw new Exception("Failed display construction");
@@ -155,19 +157,25 @@ public class SubwayScreen {
     				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     				frame.setVisible(true);
    					frame.setResizable(false);
-   					if (trainDisplay.getDirection().equals("F"))
-   						Announcer.playAnnouncer(stations.get(trainDisplay.getCurrentStation() + 1)[4]);
-   					else
-   						Announcer.playAnnouncer(stations.get(trainDisplay.getCurrentStation() - 1)[4]);
+   					if (trainDisplay.getDirection().equals("F")) {
+   						announcer.setStation(stationArray.get(trainDisplay.getCurrentStation() + 1)[4]);
+   						announcer.playAnnouncer();
+   					}
+
+   					else {
+   						announcer.setStation(stationArray.get(trainDisplay.getCurrentStation() - 1)[4]);
+   						announcer.playAnnouncer();
+   					}
+
    	    			Arrays.fill(trainLine,null);
-   	    			Arrays.fill(trains,null);
+   	    			Arrays.fill(trainList,null);
    	    			continue;
     				}
     			// Updates display contents
-    			if (trains[11] != null) {
+    			if (trainList[11] != null) {
         			newsDisplay.updateDisplay();
         			weatherDisplay.updateDisplay();
-        			advertisementDisplay.setTrainList(trains);
+        			advertisementDisplay.setTrainList(trainList);
         			advertisementDisplay.updateDisplay();
         			if (train.contains("F"))
         				trainDisplay.setDirection("F");
@@ -175,7 +183,7 @@ public class SubwayScreen {
     					trainDisplay.setDirection("B");
         			trainDisplay.updateDisplay();
     	    		Arrays.fill(trainLine,null);
-    	    		Arrays.fill(trains,null);
+    	    		Arrays.fill(trainList,null);
     			}
         	}
         } catch (IOException e) {

@@ -11,21 +11,19 @@ import javax.sound.sampled.Clip;
  * 	
  * 	@author Mark Guerta
  * 	@author Saif Youssef
- *  @version 0.9
+ *  @version 1.0
  */
 
 public class Announcer {
-	/**
-	 * Announcer constructor is unused
-	 */
-	private Announcer() {
+	private String station;
+	public Announcer() {
 		
 	}
 	/**
 	 * Static method for playing audio files
 	 * @param station The station's name
 	 */
-	public static final void playAnnouncer(String station) {
+	public void playAnnouncer() {
 			try {
 				// Combines station name to create wav file
 				station = station + ".wav";
@@ -49,5 +47,12 @@ public class Announcer {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+	
+	public String getStation() {
+		return station;
+	}
+	public void setStation(String station) {
+		this.station = station;
 	}
 }

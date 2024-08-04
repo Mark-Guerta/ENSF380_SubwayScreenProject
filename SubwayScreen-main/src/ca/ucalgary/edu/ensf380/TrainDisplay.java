@@ -7,12 +7,19 @@ import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-public class TrainDisplay extends Display {
+/**
+ * 	TrainDisplay.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
+public final class TrainDisplay extends Display {
 	private int currentStation;
 	private String Line;
 	private String direction;
 	private ArrayList<String[]> stationArray;
 	private JLabel[] stations;
+	private Announcer announcer;
 	// Variables below stay local to the object 
 	private int redFirst;
 	private int blueFirst;
@@ -21,11 +28,12 @@ public class TrainDisplay extends Display {
 	private int blueLast;
 	private int greenLast;
 	
-	public TrainDisplay(String train) {
+	public TrainDisplay(String train, ArrayList<String[]> stationArray, Announcer announcer) {
 		// Constructor initializes values based on map.csv
 		super();
 		this.stations = new JLabel[5];
-		this.stationArray = SubwayScreen.stations;
+		this.stationArray = stationArray;
+		this.announcer = announcer;
 		redFirst = -1;
 		redLast = -1;
 		blueFirst = -1;
@@ -195,7 +203,8 @@ public class TrainDisplay extends Display {
 					stations[i].revalidate();
 				}	
 			}
-			Announcer.playAnnouncer(stationArray.get(currentStation + 1)[4]);
+			announcer.setStation(stationArray.get(currentStation + 1)[4]);
+			announcer.playAnnouncer();
 		}
 		else{
 			currentStation = currentStation - 1;
@@ -214,7 +223,8 @@ public class TrainDisplay extends Display {
 					stations[j].revalidate();
 				}
 			}
-			Announcer.playAnnouncer(stationArray.get(currentStation - 1)[4]);
+			announcer.setStation(stationArray.get(currentStation - 1)[4]);
+			announcer.playAnnouncer();
 		}
 
 	}

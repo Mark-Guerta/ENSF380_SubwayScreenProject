@@ -6,11 +6,12 @@ import java.time.*;
 
 import javax.swing.*;
 /**
- * WeatherDisplay.java
- * @author Mark Guerta
- * @author Saif Youssef
+ * 	WeatherDisplay.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
  */
-public class WeatherDisplay extends Display{
+public final class WeatherDisplay extends Display{
 	private JLabel timeLabel;
 	/**
 	 *  Formats and fetches weather data from weatherReportParse

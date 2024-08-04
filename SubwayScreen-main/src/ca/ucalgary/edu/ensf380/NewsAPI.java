@@ -14,34 +14,26 @@ import org.json.simple.parser.JSONParser;
 
 
 
-public class newsApi{
-
-	public newsApi() {
-	}
-	public static void newsMain(String[] args ) {
-		invokeApi("");
+public class NewsAPI{
+	
+	
+	public static String[] mainNews(String[] args ) {
+		String keyword = "";
 		
-		Scanner scanner2 = new Scanner (System.in);
-		
-		String keyword ="";
-		
-		while(true) {
-			System.out.println("Enter a keyword or type IGNORE:");
-			keyword = scanner2.nextLine();
-			if (keyword.equalsIgnoreCase("IGNORE")) {
-				break;
-			}
-			invokeApi(keyword);
-			
+		if (args.length > 1) {
+			keyword = args[1];
 		}
-		scanner2.close();
+		return invokeApi(keyword);
 	}
 	
-	private static void invokeApi(String keyword) {
+	
 		
+	
+	private static String[] invokeApi(String keyword) {
+		String [] newsDescription = null;
 		try {
 			String url1 = "https://api.thenewsapi.com/v1/news/all";//
-			String apiKey = "fc7xQuAZMDSj0rMBFUEHh5a31KpbJHIxT6hZ4ZLL";
+			String apiKey = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";
 			String lang = "en";
 			String authUrl = url1 + "?api_token="+ apiKey + "&language=" + lang   + "&search=" + keyword;
 			URI uri = new URI(authUrl);
@@ -71,28 +63,22 @@ public class newsApi{
 				JSONParser parse = new JSONParser();
 				JSONObject jsonObject = (JSONObject) parse.parse(String.valueOf(informationString.toString()));
 				JSONArray dataArray = (JSONArray) jsonObject.get("data");
-				System.out.println(dataArray.get(0));
-				JSONObject newsData = (JSONObject) dataArray.get(0);
+				newsDescription = new String[dataArray.size()];
 				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\\.\")");
-				Matcher matcher = snippetPattern.matcher(newsData.toString());
-				
-				if(matcher.find()) {
-					String description = matcher.group(1).replaceAll("\"description\":","").replaceAll("\\\\n\\\\n", "").replaceAll("\\\\u[\\d|[A-Z]]+", "");
+
+				for (int i = 0; i < dataArray.size(); i++) {
+					JSONObject newsData = (JSONObject) dataArray.get(0);
+					Matcher matcher = snippetPattern.matcher(newsData.toString());
+					String description = null;
+					if (matcher.find())
+						description = matcher.group(1).replaceAll("\"description\":","").replaceAll("\\\\n\\\\n", "").replaceAll("\\\\u[\\d|[A-Z]]+", "");
 					description = description.substring(1, description.length() - 1);
-					System.out.println(description);
+					newsDescription[i] = description;
 				}
-				System.out.println(newsData);
-				
 			}
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-		   	
-		   	
 		}
-
+		return newsDescription;
 	}
-
 }
