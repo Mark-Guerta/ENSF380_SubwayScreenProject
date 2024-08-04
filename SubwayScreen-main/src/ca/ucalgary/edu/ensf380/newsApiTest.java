@@ -2,6 +2,8 @@ package ca.ucalgary.edu.ensf380;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.swing.text.Document;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,10 +30,7 @@ class newsApiTest {
 	}
 	@Test
 	void testKeyword() {
-		String keyword = "test";
-	    result = newsApi.invokeApi(keyword);
-	    
-		assertEquals
+		
 	}
 
 
