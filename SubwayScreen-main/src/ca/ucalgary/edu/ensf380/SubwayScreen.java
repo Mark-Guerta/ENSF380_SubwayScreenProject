@@ -21,7 +21,7 @@
  *	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ca.ucalgary.edu.ensf380;
-import java.awt.Color;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,15 +43,9 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class SubwayScreen {
+
 	/**
-	 * Unused constructor
-	 */
-	
-	private SubwayScreen() {
-		
-	}
-	/**
-	 * Main method
+	 * Main method that displays a subway screen
 	 * @param args Command Line Arguments
 	 */
 	public static void main(String[] args) {
@@ -107,6 +101,7 @@ public class SubwayScreen {
         	e.printStackTrace();
         	System.exit(1);
         } 
+        
         ArrayList<String[]> stationArray;
         String[] trainLine = new String[4];
         String [] trainList;
@@ -116,6 +111,7 @@ public class SubwayScreen {
 		NewsDisplay newsDisplay = null;
 		Announcer announcer = new Announcer();
 		stationArray = readMapCSV("map.csv");
+		
 		// Creates new window
         JFrame frame = new JFrame();
         try {
@@ -129,6 +125,7 @@ public class SubwayScreen {
         					break;
         				}
         		}
+        		// Ensures that train line is not empty before processing
         		if (trainLine[3] == null)
         			continue;
         		trainList = extractTrains(trainLine);
@@ -144,10 +141,10 @@ public class SubwayScreen {
    					weatherDisplay = new WeatherDisplay();
    					newsDisplay = new NewsDisplay(args);
    					advertisementDisplay = new AdvertisementDisplay(trainList,train, stationArray);
-   					
+   					// Checks if constructor failed
     				if (trainDisplay == null || newsDisplay == null || weatherDisplay == null || advertisementDisplay == null)
     					throw new Exception("Failed display construction");
-    				
+    				// Adds displays to main screen and formats main screen
     				frame.add(trainDisplay.getDisplay());
    					frame.add(newsDisplay.getDisplay());
     				frame.add(weatherDisplay.getDisplay());
@@ -157,6 +154,7 @@ public class SubwayScreen {
     				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     				frame.setVisible(true);
    					frame.setResizable(false);
+   					// Activates announcer for the first time
    					if (trainDisplay.getDirection().equals("F")) {
    						announcer.setStation(stationArray.get(trainDisplay.getCurrentStation() + 1)[4]);
    						announcer.playAnnouncer();
@@ -172,6 +170,7 @@ public class SubwayScreen {
    	    			continue;
     				}
     			// Updates display contents
+    			// Only activates when the trainList is full initialized
     			if (trainList[11] != null) {
         			newsDisplay.updateDisplay();
         			weatherDisplay.updateDisplay();
@@ -235,26 +234,30 @@ public class SubwayScreen {
 			}
 		}
 	}
+	/**
+	 * Gets the train from the substring ex: T1(R01, F)
+	 * @param trainLine Contains the 3 trainLines
+	 * @return train Contains all 12 trains
+	 */
 	public static String[] extractTrains(String[] trainLine) {
 		Pattern trainPattern = Pattern.compile("T\\d+?\\([RGB]\\d\\d, [FB]\\)");
 
-		String[] trains = new String[12];
+		String[] train = new String[12];
 		for (int i = 1; i < 4; i++) {
 			Matcher matcher = trainPattern.matcher(trainLine[i]);
 			for (int j = 0; j < 4; j++) {
 				matcher.find();
 				if (i == 1) {
-					trains[j] = matcher.group();
+					train[j] = matcher.group();
 				}
 				else if (i == 2) {
-					trains[j + 4] = matcher.group();
+					train[j + 4] = matcher.group();
 				}
 				else if (i == 3) {
-					trains[j + 8] = matcher.group();
+					train[j + 8] = matcher.group();
 				}
 			}
 		}
-
-		return trains;
+		return train;
 	}
 }

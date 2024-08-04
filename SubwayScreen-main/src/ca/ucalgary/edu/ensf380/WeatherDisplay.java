@@ -35,6 +35,7 @@ public final class WeatherDisplay extends Display{
 		timeLabel.revalidate();
 		display.revalidate();
 	}
+	// Setters and getters
 	public JLabel getTimeLabel() {
 		return timeLabel;
 	}

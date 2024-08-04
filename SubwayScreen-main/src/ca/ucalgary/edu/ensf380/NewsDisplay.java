@@ -41,7 +41,6 @@ public final class NewsDisplay extends Display{
 	 * Updates display and fetches data from newsApi class
 	 */
 	public void updateDisplay() {
-		// Requirements: update the newsDisplay with using the description string variable in  invokeAPI of newsApi.
 		while (newsDescription[newsPosition] == null) {
 			if (newsPosition == newsDescription.length) {
 				newsPosition = 0;

@@ -131,56 +131,8 @@ public final class TrainDisplay extends Display {
 		display.setBounds(0, 0, 1080, 120);
 		for (int i = 0; i < 5; i++)
 			display.add(stations[i], JLayeredPane.PALETTE_LAYER);
-
 	}
 
-	public int getCurrentStation() {
-		return currentStation;
-	}
-
-	public void setCurrentStation(int currentStation) {
-		this.currentStation = currentStation;
-	}
-
-	public String getLine() {
-		return Line;
-	}
-
-	public void setLine(String line) {
-		Line = line;
-	}
-
-	public String getDirection() {
-		return direction;
-	}
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
-	public ArrayList<String[]> getStationArray() {
-		return stationArray;
-	}
-
-	public void setStationArray(ArrayList<String[]> stationArray) {
-		this.stationArray = stationArray;
-	}
-
-	public JLabel[] getStations() {
-		return stations;
-	}
-
-	public void setStations(JLabel[] stations) {
-		this.stations = stations;
-	}
-
-	public JLayeredPane getDisplay() {
-		return display;
-	}
-
-	public void setDisplay(JLayeredPane display) {
-		this.display = display;
-	}
 	// Updates train stations on screen
 	public void updateDisplay() {
 		boolean check = false;
@@ -240,6 +192,102 @@ public final class TrainDisplay extends Display {
 				break;
 			}
 		}
-
 	}
+	// Setters and Getters
+	public int getCurrentStation() {
+		return currentStation;
+	}
+
+	public void setCurrentStation(int currentStation) {
+		this.currentStation = currentStation;
+	}
+
+	public String getLine() {
+		return Line;
+	}
+
+	public void setLine(String line) {
+		Line = line;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public ArrayList<String[]> getStationArray() {
+		return stationArray;
+	}
+
+	public void setStationArray(ArrayList<String[]> stationArray) {
+		this.stationArray = stationArray;
+	}
+
+	public JLabel[] getStations() {
+		return stations;
+	}
+
+	public void setStations(JLabel[] stations) {
+		this.stations = stations;
+	}
+
+	public Announcer getAnnouncer() {
+		return announcer;
+	}
+
+	public void setAnnouncer(Announcer announcer) {
+		this.announcer = announcer;
+	}
+
+	public int getRedFirst() {
+		return redFirst;
+	}
+
+	public void setRedFirst(int redFirst) {
+		this.redFirst = redFirst;
+	}
+
+	public int getBlueFirst() {
+		return blueFirst;
+	}
+
+	public void setBlueFirst(int blueFirst) {
+		this.blueFirst = blueFirst;
+	}
+
+	public int getGreenFirst() {
+		return greenFirst;
+	}
+
+	public void setGreenFirst(int greenFirst) {
+		this.greenFirst = greenFirst;
+	}
+
+	public int getRedLast() {
+		return redLast;
+	}
+
+	public void setRedLast(int redLast) {
+		this.redLast = redLast;
+	}
+
+	public int getBlueLast() {
+		return blueLast;
+	}
+
+	public void setBlueLast(int blueLast) {
+		this.blueLast = blueLast;
+	}
+
+	public int getGreenLast() {
+		return greenLast;
+	}
+
+	public void setGreenLast(int greenLast) {
+		this.greenLast = greenLast;
+	}
+	
 }

@@ -20,7 +20,7 @@ public class Announcer {
 		
 	}
 	/**
-	 * Static method for playing audio files
+	 * Method for playing audio files
 	 * @param station The station's name
 	 */
 	public void playAnnouncer() {
@@ -48,7 +48,7 @@ public class Announcer {
 				e.printStackTrace();
 			}
 	}
-	
+	// Setters and getters
 	public String getStation() {
 		return station;
 	}
