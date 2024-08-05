@@ -1,8 +1,8 @@
 CREATE DATABASE IF NOT EXISTS png;
 USE png;
 CREATE TABLE IF NOT EXISTS png_files(
-	file_name varchar(255),
-    file_path varchar(255)
+	fileName varchar(255),
+    filePath varchar(255)
 );
 TRUNCATE TABLE png_files;
 INSERT INTO png_files VALUES ("AD1","C:\\Users\\Mark\\eclipse-workspace\\ENSF380_SubwayScreenProject\\SubwayScreen-main\\ADs\\Screenshot 2024-08-01 at 4.04.32 PM.png");
