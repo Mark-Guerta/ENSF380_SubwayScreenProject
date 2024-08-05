@@ -1,8 +1,9 @@
 package ca.ucalgary.edu.ensf380;
 
 import java.awt.Color;
-import java.awt.GridBagLayout;
-
+import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.*;
 /**
@@ -15,6 +16,7 @@ public final class NewsDisplay extends Display{
 	private JLabel newsLabel;
 	private String[] newsDescription;
 	private int newsPosition;
+	private Timer timer;
 	/**
 	 * Formats display and fetches data from newsApi class
 	 * @param args 
@@ -24,12 +26,14 @@ public final class NewsDisplay extends Display{
 		display.setOpaque(true);
 		display.setBackground(Color.white);
 		display.setBounds(0, 600, 1090, 120);
-		display.setLayout(new GridBagLayout());
 		newsDescription = NewsAPI.mainNews(args);
 		// Add newsDescription[newsPosition++] when testing API calls into the JLabel instead of Lorem ipsum
-		// Test string: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+		// Test string
+		//newsLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 		newsLabel = new JLabel(newsDescription[newsPosition++]);
-		display.add(newsLabel);
+		newsLabel.setSize(newsLabel.getPreferredSize());
+		newsLabel.setLocation(0, 30);
+		display.add(newsLabel, Integer.valueOf(1));
 	}
 	/**
 	 * Updates display and fetches data from newsApi class
@@ -47,6 +51,24 @@ public final class NewsDisplay extends Display{
 		newsLabel.setText(newsDescription[newsPosition]);
 		newsLabel.revalidate();
 	}
+	/**
+	 * Moves text in and out of the display
+	 */
+	public void scrollNews() {
+		timer = new Timer();
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				if (newsLabel.getX() < -1000) {
+					newsLabel.setLocation(1095, newsLabel.getY());
+				}
+				newsLabel.setLocation(newsLabel.getX() - 1, newsLabel.getY());
+				display.repaint();
+			}
+		};
+		timer.scheduleAtFixedRate(timerTask, 0, 10);
+	}
+	
 	// Getter and Setters
 	public JLabel getNewsLabel() {
 		return newsLabel;
@@ -72,6 +94,4 @@ public final class NewsDisplay extends Display{
 		this.newsPosition = newsPosition;
 	}
 	
-
-
 }
