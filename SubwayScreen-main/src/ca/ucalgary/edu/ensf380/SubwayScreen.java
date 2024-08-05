@@ -88,7 +88,9 @@ public class SubwayScreen {
         Pattern pattern = null;
         try {
         	// Checks if args[0] contains a train number
-            if (args[0].matches("T[1-9]") || args[0].matches("T1[0-2]"))
+        	if (args.length < 2)
+        		throw new IllegalArgumentException("Please add a train from T1-T12 and city");
+        	if (args[0].matches("T[1-9]") || args[0].matches("T1[0-2]"))
         		 pattern = Pattern.compile("("+ args[0] +"\\([RGB]\\d\\d, [FB]\\))");
             else
             	throw new IllegalArgumentException("Invalid argument for train");
