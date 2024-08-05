@@ -44,7 +44,7 @@ public class weatherReportParse{
 
 		
 		public String getURL(){
-			eturn URL;
+			return URL;
 		}
 
 		public void setURL(String URL){
@@ -64,7 +64,7 @@ public class weatherReportParse{
 		private String cityID;
 
 		public String getCityID(){
-			eturn cityID;
+			return cityID;
 		}
 
 		public void setCityID(String cityID){
@@ -100,10 +100,10 @@ public class weatherReportParse{
 
 
 		public String getCityID(){
-			eturn cityID;
+			return cityID;
 		}
 		public void setCityID(String cityID){
-			this.cityID = cityID
+			this.cityID = cityID;
 		}
 
 		public String getWeatherReport(){
