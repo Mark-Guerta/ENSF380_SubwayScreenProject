@@ -40,7 +40,20 @@ public class weatherReportParse{
 	
 	
 	public static class WeatherReportURL{
-		String URL = "https://wttr.in/";
+		private String URL = "https://wttr.in/";
+
+		
+		public String getURL(){
+			eturn URL;
+		}
+
+		public void setURL(String URL){
+			this.URL = URL;
+		}	
+
+
+		
+		
 		Document fetchWeatherReport(String cityID) throws IOException {
 			return Jsoup.connect(URL + cityID).timeout(10000).get();
 		}
@@ -48,6 +61,19 @@ public class weatherReportParse{
 	
 	
 	public static class WeatherReportParser{
+		private String cityID;
+
+		public String getCityID(){
+			eturn cityID;
+		}
+
+		public void setCityID(String cityID){
+			this.cityID = cityID;
+		}	
+
+
+
+		
 		String parseWeatherReport(Document document,String cityID) {
 			String cityIDReg =Pattern.quote(cityID);// determines the regex pattern of the user input
 			Pattern cityIDPattern = Pattern.compile(cityIDReg, Pattern.CASE_INSENSITIVE);
@@ -68,6 +94,27 @@ public class weatherReportParse{
 		
 		
 	public static class WeatherReportDisplay{
+
+		private String cityID;
+		private String weatherReport;
+
+
+		public String getCityID(){
+			eturn cityID;
+		}
+		public void setCityID(String cityID){
+			this.cityID = cityID
+		}
+
+		public String getWeatherReport(){
+			return weatherReport;
+		}
+
+		public void setWeatherReport(String weatherReport){
+			this.weatherReport = weatherReport;
+		}	
+
+
 		public void displayWeatherReport(String cityID, String weatherReport) {
 			if (weatherReport != null) {
 				System.out.println(cityID + " " + java.time.LocalTime.now() + " " + weatherReport);
