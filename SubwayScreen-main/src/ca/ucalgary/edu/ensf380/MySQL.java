@@ -37,7 +37,7 @@ public class MySQL {
 		}
 		return advertisement;
 	}
-	private static ImageIcon resizeImage(File imgFile, int x, int y) {
+	public static ImageIcon resizeImage(File imgFile, int x, int y) {
         BufferedImage bufferImage = null;
        	try {
        		bufferImage = ImageIO.read(imgFile);

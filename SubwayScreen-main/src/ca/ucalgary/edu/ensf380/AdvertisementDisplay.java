@@ -43,7 +43,7 @@ public final class AdvertisementDisplay extends Display {
 		this.stationArray = stationArray;
 		adPhoto = MySQL.getAds();
 		adPosition = 0;
-		String[] fileNames = {"TrainSymbolCurrentRed.png","TrainSymbolCurrentBlue.png","TrainSymbolCurrentGreen.png"
+		String[] fileName = {"TrainSymbolCurrentRed.png","TrainSymbolCurrentBlue.png","TrainSymbolCurrentGreen.png"
 				,"TrainSymbolRed.png","TrainSymbolBlue.png","TrainSymbolGreen.png"};
 		
 		// Adds all station to the JLayeredPane map
@@ -60,17 +60,17 @@ public final class AdvertisementDisplay extends Display {
 		for (int index1 = 0; index1 < trainList.length; index1++) {
 			if(trainList[index1].contains("R")) {
 				trains[index1] = new JLabel();
-				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileNames[3]), 10, 10));
+				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileName[3]), 10, 10));
 				extractStationCoords(trainList[index1], trains[index1]);
 			}
 			else if (trainList[index1].contains("G")){
 				trains[index1] = new JLabel();
-				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileNames[5]), 10, 10));
+				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileName[5]), 10, 10));
 				extractStationCoords(trainList[index1], trains[index1]);
 			}
 			else if(trainList[index1].contains("B")) {
 				trains[index1] = new JLabel();
-				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileNames[4]), 10, 10));
+				trains[index1].setIcon(resizeImage( new File("trainSymbols",fileName[4]), 10, 10));
 				extractStationCoords(trainList[index1], trains[index1]);
 			}
 			trains[index1].setSize(10,10);
@@ -80,17 +80,17 @@ public final class AdvertisementDisplay extends Display {
 		this.currentTrain = currentTrain;
 		for (int index2 = 0; index2 < trainList.length; index2++) {
 				if(trainList[index2].contains(currentTrain) && trainList[index2].contains("R")) {
-					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileNames[0]), 10, 10));
+					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileName[0]), 10, 10));
 					extractStationCoords(trainList[index2], trains[index2]);
 					break;
 				}
 				else if (trainList[index2].contains(currentTrain) && trainList[index2].contains("G")){
-					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileNames[2]), 10, 10));
+					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileName[2]), 10, 10));
 					extractStationCoords(trainList[index2], trains[index2]);
 					break;
 				}
 				else if(trainList[index2].contains(currentTrain) && trainList[index2].contains("B")) {
-					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileNames[1]), 10, 10));
+					trains[index2].setIcon(resizeImage( new File("trainSymbols",fileName[1]), 10, 10));
 					extractStationCoords(trainList[index2], trains[index2]);
 					break;
 				}
@@ -140,7 +140,7 @@ public final class AdvertisementDisplay extends Display {
 	 * @param y Dimension height
 	 * @return ImageIcon To be added to a JLabel
 	 */
-	private ImageIcon resizeImage(File imgFile, int x, int y) {
+	public ImageIcon resizeImage(File imgFile, int x, int y) {
         BufferedImage bufferImage = null;
        	try {
        		bufferImage = ImageIO.read(imgFile);
@@ -159,7 +159,7 @@ public final class AdvertisementDisplay extends Display {
 	 * @param train Train to get coordinates from
 	 * @param trainLabel JLabel to update position
 	 */
-	private void extractStationCoords(String train, JLabel trainLabel) {
+	public void extractStationCoords(String train, JLabel trainLabel) {
 		Pattern patternStationCode = Pattern.compile("([RGB]\\d\\d)");
 		Matcher matcher = patternStationCode.matcher(train);
 		String stationCode = null;
@@ -184,7 +184,7 @@ public final class AdvertisementDisplay extends Display {
 	/**
 	 * Displays ad for 10 seconds then displays train map for 5 seconds. Afterwards, an ad is displayed again.
 	 */
-	private void adTimer() {
+	public void adTimer() {
 		Timer timer5 = new Timer();
 		TimerTask task5 = new TimerTask() {
 			@Override
