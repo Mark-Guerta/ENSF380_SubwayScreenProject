@@ -74,6 +74,7 @@ public class weatherReportParse{
 				
 			}else {
 				System.out.println("City ID not found");
+				System.exit(1);
 			}
 		}
 	}

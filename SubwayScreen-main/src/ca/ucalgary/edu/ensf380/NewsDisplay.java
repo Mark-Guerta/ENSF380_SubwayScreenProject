@@ -32,7 +32,7 @@ public final class NewsDisplay extends Display{
 		//newsLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 		newsLabel = new JLabel(newsDescription[newsPosition++]);
 		newsLabel.setSize(newsLabel.getPreferredSize());
-		newsLabel.setLocation(0, 30);
+		newsLabel.setLocation(1095, 30);
 		display.add(newsLabel, Integer.valueOf(1));
 	}
 	/**
@@ -59,7 +59,7 @@ public final class NewsDisplay extends Display{
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
-				if (newsLabel.getX() < -1000) {
+				if (newsLabel.getX() < -newsLabel.getWidth()) {
 					newsLabel.setLocation(1095, newsLabel.getY());
 				}
 				newsLabel.setLocation(newsLabel.getX() - 1, newsLabel.getY());

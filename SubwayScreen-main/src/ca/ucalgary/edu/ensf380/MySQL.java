@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class MySQL {
 
 	public static ImageIcon[] getAds() {
-		ImageIcon[] advertisement = new ImageIcon[7];
+		ImageIcon[] advertisement = new ImageIcon[8];
 		try {
 			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "ENSF380FinalProject");
 			
@@ -23,7 +23,6 @@ public class MySQL {
 				String fileName = myRs.getString("filename");
 				String filePath = myRs.getString("filepath");
 				System.out.println(fileName + ", " + filePath);
-				
 				
 				File adFile = new File(filePath);
 				if (adFile.exists()) {
