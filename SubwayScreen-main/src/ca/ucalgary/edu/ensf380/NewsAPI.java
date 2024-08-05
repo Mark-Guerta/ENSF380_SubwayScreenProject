@@ -15,7 +15,17 @@ import org.json.simple.parser.JSONParser;
 
 
 public class NewsAPI{
-	
+
+
+	private String keyword = "";
+
+	public String getKeyword(){
+		return keyword;
+	}	
+
+	public void setKeyword(String keyword){
+		this.keyword = keyword;
+	}	
 	
 	public static String[] mainNews(String[] args ) {
 		String keyword = "";
