@@ -7,13 +7,17 @@
        Install mySQL using the mySQL Installer. Link: https://dev.mysql.com/downloads/windows/installer/8.0.html
     </li>
     <li>
+      Create a local database and choose a password.
+      Be sure to change the password in the MySQL.java file in src\ca\ucalgary\edu\ensf380. Look for: DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "changePassword").
+    </li>
+    <li>
       Within the png.sql file. Please copy the absolute file path of each photo in SubwayScreen-main\ads and paste into the VALUE field of the sql script.
     </li>
     <li>
-      Additionally, ensure that every single slash is doubled to ensure that the the program can find the files.
+      Additionally, ensure that every single slash for the path is double slashed to ensure that the the program can find the files (The mySQL syntax uses a different symbol for slashes in contrast to the one Java uses when extracting).
     </li>
     <li>
-         Afterwards, run the png.sql script (found in SubwayScreen-main) in mySQL workbench and be sure to change the password in the MySQL.java file in src\ca\ucalgary\edu\ensf380. Look for: DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "changePassword")
+         Afterwards, run the png.sql script (found in SubwayScreen-main) in mySQL workbench.
     </li>
   </ol>
 </p>
