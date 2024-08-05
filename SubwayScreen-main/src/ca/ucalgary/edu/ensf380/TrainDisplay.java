@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 /**
  * 	TrainDisplay.java
+ *  Displays a train line with the current station and the next upcoming stations
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -197,100 +198,221 @@ public final class TrainDisplay extends Display {
 		}
 	}
 	// Setters and Getters
+	/**
+	 * Gets the current station index.
+	 *
+	 * @return the current station index.
+	 */
 	public int getCurrentStation() {
-		return currentStation;
+	    return currentStation;
 	}
 
+	/**
+	 * Sets the current station index.
+	 *
+	 * @param currentStation the current station index to set.
+	 */
 	public void setCurrentStation(int currentStation) {
-		this.currentStation = currentStation;
+	    this.currentStation = currentStation;
 	}
 
+	/**
+	 * Gets the line name.
+	 *
+	 * @return the line name.
+	 */
 	public String getLine() {
-		return Line;
+	    return Line;
 	}
 
+	/**
+	 * Sets the line name.
+	 *
+	 * @param line the line name to set.
+	 */
 	public void setLine(String line) {
-		Line = line;
+	    Line = line;
 	}
 
+	/**
+	 * Gets the direction.
+	 *
+	 * @return the direction.
+	 */
 	public String getDirection() {
-		return direction;
+	    return direction;
 	}
 
+	/**
+	 * Sets the direction.
+	 *
+	 * @param direction the direction to set.
+	 */
 	public void setDirection(String direction) {
-		this.direction = direction;
+	    this.direction = direction;
 	}
 
+	/**
+	 * Gets the station array.
+	 *
+	 * @return the station array.
+	 */
 	public ArrayList<String[]> getStationArray() {
-		return stationArray;
+	    return stationArray;
 	}
 
+	/**
+	 * Sets the station array.
+	 *
+	 * @param stationArray the station array to set.
+	 */
 	public void setStationArray(ArrayList<String[]> stationArray) {
-		this.stationArray = stationArray;
+	    this.stationArray = stationArray;
 	}
 
+	/**
+	 * Gets the array of station labels.
+	 *
+	 * @return the array of station labels.
+	 */
 	public JLabel[] getStations() {
-		return stations;
+	    return stations;
 	}
 
+	/**
+	 * Sets the array of station labels.
+	 *
+	 * @param stations the array of station labels to set.
+	 */
 	public void setStations(JLabel[] stations) {
-		this.stations = stations;
+	    this.stations = stations;
 	}
 
+	/**
+	 * Gets the announcer.
+	 *
+	 * @return the announcer.
+	 */
 	public Announcer getAnnouncer() {
-		return announcer;
+	    return announcer;
 	}
 
+	/**
+	 * Sets the announcer.
+	 *
+	 * @param announcer the announcer to set.
+	 */
 	public void setAnnouncer(Announcer announcer) {
-		this.announcer = announcer;
+	    this.announcer = announcer;
 	}
 
+	/**
+	 * Gets the index of the first red station.
+	 *
+	 * @return the index of the first red station.
+	 */
 	public int getRedFirst() {
-		return redFirst;
+	    return redFirst;
 	}
 
+	/**
+	 * Sets the index of the first red station.
+	 *
+	 * @param redFirst the index of the first red station to set.
+	 */
 	public void setRedFirst(int redFirst) {
-		this.redFirst = redFirst;
+	    this.redFirst = redFirst;
 	}
 
+	/**
+	 * Gets the index of the first blue station.
+	 *
+	 * @return the index of the first blue station.
+	 */
 	public int getBlueFirst() {
-		return blueFirst;
+	    return blueFirst;
 	}
 
+	/**
+	 * Sets the index of the first blue station.
+	 *
+	 * @param blueFirst the index of the first blue station to set.
+	 */
 	public void setBlueFirst(int blueFirst) {
-		this.blueFirst = blueFirst;
+	    this.blueFirst = blueFirst;
 	}
 
+	/**
+	 * Gets the index of the first green station.
+	 *
+	 * @return the index of the first green station.
+	 */
 	public int getGreenFirst() {
-		return greenFirst;
+	    return greenFirst;
 	}
 
+	/**
+	 * Sets the index of the first green station.
+	 *
+	 * @param greenFirst the index of the first green station to set.
+	 */
 	public void setGreenFirst(int greenFirst) {
-		this.greenFirst = greenFirst;
+	    this.greenFirst = greenFirst;
 	}
 
+	/**
+	 * Gets the index of the last red station.
+	 *
+	 * @return the index of the last red station.
+	 */
 	public int getRedLast() {
-		return redLast;
+	    return redLast;
 	}
 
+	/**
+	 * Sets the index of the last red station.
+	 *
+	 * @param redLast the index of the last red station to set.
+	 */
 	public void setRedLast(int redLast) {
-		this.redLast = redLast;
+	    this.redLast = redLast;
 	}
 
+	/**
+	 * Gets the index of the last blue station.
+	 *
+	 * @return the index of the last blue station.
+	 */
 	public int getBlueLast() {
-		return blueLast;
+	    return blueLast;
 	}
 
+	/**
+	 * Sets the index of the last blue station.
+	 *
+	 * @param blueLast the index of the last blue station to set.
+	 */
 	public void setBlueLast(int blueLast) {
-		this.blueLast = blueLast;
+	    this.blueLast = blueLast;
 	}
 
+	/**
+	 * Gets the index of the last green station.
+	 *
+	 * @return the index of the last green station.
+	 */
 	public int getGreenLast() {
-		return greenLast;
+	    return greenLast;
 	}
 
+	/**
+	 * Sets the index of the last green station.
+	 *
+	 * @param greenLast the index of the last green station to set.
+	 */
 	public void setGreenLast(int greenLast) {
-		this.greenLast = greenLast;
+	    this.greenLast = greenLast;
 	}
+
 	
 }

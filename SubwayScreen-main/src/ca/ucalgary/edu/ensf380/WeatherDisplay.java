@@ -7,6 +7,7 @@ import java.time.*;
 import javax.swing.*;
 /**
  * 	WeatherDisplay.java
+ *  Uses the weatherParser to print weather on the console and displays the time on the screen.
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -36,11 +37,23 @@ public final class WeatherDisplay extends Display{
 		display.revalidate();
 	}
 	// Setters and getters
+
+	/**
+	 * Gets the time label.
+	 *
+	 * @return the time label.
+	 */
 	public JLabel getTimeLabel() {
-		return timeLabel;
+	    return timeLabel;
 	}
+
+	/**
+	 * Sets the time label.
+	 *
+	 * @param timeLabel the time label to set.
+	 */
 	public void setTimeLabel(JLabel timeLabel) {
-		this.timeLabel = timeLabel;
+	    this.timeLabel = timeLabel;
 	}
 
 }

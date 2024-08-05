@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import javax.swing.*;
 /**
  * 	NewsDisplay.java
+ * 	Displays the scrolling news on the screen
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -70,28 +71,59 @@ public final class NewsDisplay extends Display{
 	}
 	
 	// Getter and Setters
+	/**
+	 * Gets the news label.
+	 *
+	 * @return the news label.
+	 */
 	public JLabel getNewsLabel() {
-		return newsLabel;
+	    return newsLabel;
 	}
-	
+
+	/**
+	 * Sets the news label.
+	 *
+	 * @param newsLabel the news label to set.
+	 */
 	public void setNewsLabel(JLabel newsLabel) {
-		this.newsLabel = newsLabel;
+	    this.newsLabel = newsLabel;
 	}
-	
+
+	/**
+	 * Gets the news descriptions.
+	 *
+	 * @return the array of news descriptions.
+	 */
 	public String[] getNewsDescription() {
-		return newsDescription;
+	    return newsDescription;
 	}
-	
+
+	/**
+	 * Sets the news descriptions.
+	 *
+	 * @param newsDescription the array of news descriptions to set.
+	 */
 	public void setNewsDescription(String[] newsDescription) {
-		this.newsDescription = newsDescription;
+	    this.newsDescription = newsDescription;
 	}
-	
+
+	/**
+	 * Gets the position of the news.
+	 *
+	 * @return the position of the news.
+	 */
 	public int getNewsPosition() {
-		return newsPosition;
+	    return newsPosition;
 	}
-	
+
+	/**
+	 * Sets the position of the news.
+	 *
+	 * @param newsPosition the position of the news to set.
+	 */
 	public void setNewsPosition(int newsPosition) {
-		this.newsPosition = newsPosition;
+	    this.newsPosition = newsPosition;
 	}
+
 	
 }

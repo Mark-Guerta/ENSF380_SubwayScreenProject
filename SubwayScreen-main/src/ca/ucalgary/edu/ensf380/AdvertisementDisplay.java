@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 /**
  * 	AdvertisementDisplay.java
+ * 	Displays advertisements and the train map by passing train map and all trains
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -209,77 +210,168 @@ public final class AdvertisementDisplay extends Display {
 		timer10.schedule(task10, 10000);
 	}
 	// Setters and Getters
+
+	/**
+	 * Gets the map layered pane.
+	 *
+	 * @return the map layered pane.
+	 */
 	public JLayeredPane getMap() {
-		return map;
+	    return map;
 	}
 
+	/**
+	 * Sets the map layered pane.
+	 *
+	 * @param map the map layered pane to set.
+	 */
 	public void setMap(JLayeredPane map) {
-		this.map = map;
+	    this.map = map;
 	}
 
+	/**
+	 * Gets the advertisement label.
+	 *
+	 * @return the advertisement label.
+	 */
 	public JLabel getAdLabel() {
-		return adLabel;
+	    return adLabel;
 	}
 
+	/**
+	 * Sets the advertisement label.
+	 *
+	 * @param adLabel the advertisement label to set.
+	 */
 	public void setAdLabel(JLabel adLabel) {
-		this.adLabel = adLabel;
+	    this.adLabel = adLabel;
 	}
 
+	/**
+	 * Gets the array of train labels.
+	 *
+	 * @return the array of train labels.
+	 */
 	public JLabel[] getTrains() {
-		return trains;
+	    return trains;
 	}
 
+	/**
+	 * Sets the array of train labels.
+	 *
+	 * @param trains the array of train labels to set.
+	 */
 	public void setTrains(JLabel[] trains) {
-		this.trains = trains;
+	    this.trains = trains;
 	}
 
+	/**
+	 * Gets the current train identifier.
+	 *
+	 * @return the current train identifier.
+	 */
 	public String getCurrentTrain() {
-		return currentTrain;
+	    return currentTrain;
 	}
 
+	/**
+	 * Sets the current train identifier.
+	 *
+	 * @param currentTrain the current train identifier to set.
+	 */
 	public void setCurrentTrain(String currentTrain) {
-		this.currentTrain = currentTrain;
+	    this.currentTrain = currentTrain;
 	}
 
+	/**
+	 * Gets the list of train identifiers.
+	 *
+	 * @return the list of train identifiers.
+	 */
 	public String[] getTrainList() {
-		return trainList;
+	    return trainList;
 	}
 
+	/**
+	 * Sets the list of train identifiers.
+	 *
+	 * @param trainList the list of train identifiers to set.
+	 */
 	public void setTrainList(String[] trainList) {
-		this.trainList = trainList;
+	    this.trainList = trainList;
 	}
 
+	/**
+	 * Gets the station array.
+	 *
+	 * @return the station array.
+	 */
 	public ArrayList<String[]> getStationArray() {
-		return stationArray;
+	    return stationArray;
 	}
 
+	/**
+	 * Sets the station array.
+	 *
+	 * @param stationArray the station array to set.
+	 */
 	public void setStationArray(ArrayList<String[]> stationArray) {
-		this.stationArray = stationArray;
+	    this.stationArray = stationArray;
 	}
 
+	/**
+	 * Gets the list of station labels.
+	 *
+	 * @return the list of station labels.
+	 */
 	public ArrayList<JLabel> getStationLabel() {
-		return stationLabel;
+	    return stationLabel;
 	}
 
+	/**
+	 * Sets the list of station labels.
+	 *
+	 * @param stationLabel the list of station labels to set.
+	 */
 	public void setStationLabel(ArrayList<JLabel> stationLabel) {
-		this.stationLabel = stationLabel;
+	    this.stationLabel = stationLabel;
 	}
 
+	/**
+	 * Gets the array of advertisement photos.
+	 *
+	 * @return the array of advertisement photos.
+	 */
 	public ImageIcon[] getAdPhoto() {
-		return adPhoto;
+	    return adPhoto;
 	}
 
+	/**
+	 * Sets the array of advertisement photos.
+	 *
+	 * @param adPhoto the array of advertisement photos to set.
+	 */
 	public void setAdPhoto(ImageIcon[] adPhoto) {
-		this.adPhoto = adPhoto;
+	    this.adPhoto = adPhoto;
 	}
 
+	/**
+	 * Gets the position of the advertisement.
+	 *
+	 * @return the position of the advertisement.
+	 */
 	public int getAdPosition() {
-		return adPosition;
+	    return adPosition;
 	}
 
+	/**
+	 * Sets the position of the advertisement.
+	 *
+	 * @param adPosition the position of the advertisement to set.
+	 */
 	public void setAdPosition(int adPosition) {
-		this.adPosition = adPosition;
+	    this.adPosition = adPosition;
 	}
-	
+
 	
 }

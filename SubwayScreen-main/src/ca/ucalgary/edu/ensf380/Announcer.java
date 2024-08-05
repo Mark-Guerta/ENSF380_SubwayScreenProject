@@ -8,7 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 /**
  * 	Announcer.java
- * 	
+ * 	Plays audio files using the by the name of the station
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -24,7 +24,6 @@ public class Announcer {
 	}
 	/**
 	 * Method for playing audio files
-	 * @param station The station's name
 	 */
 	public void playAnnouncer() {
 			try {
@@ -52,10 +51,22 @@ public class Announcer {
 			}
 	}
 	// Setters and getters
+	/**
+	 * Gets the station name.
+	 *
+	 * @return the station name.
+	 */
 	public String getStation() {
-		return station;
+	    return station;
 	}
+
+	/**
+	 * Sets the station name.
+	 *
+	 * @param station the station name to set.
+	 */
 	public void setStation(String station) {
-		this.station = station;
+	    this.station = station;
 	}
+
 }

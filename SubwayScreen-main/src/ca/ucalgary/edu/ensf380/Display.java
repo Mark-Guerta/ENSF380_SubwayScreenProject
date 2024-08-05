@@ -2,6 +2,7 @@ package ca.ucalgary.edu.ensf380;
 
 import javax.swing.JLayeredPane;
 /**
+ * An abstract class to standardize the every display.
  * @author Mark Guerta
  * @author Saif Youssef
  * @version 1.0
@@ -26,10 +27,22 @@ public abstract class Display {
 	 */
 	public abstract void updateDisplay();
 	// Setter and Getters
+	/**
+	 * Gets the display layered pane.
+	 *
+	 * @return the display layered pane.
+	 */
 	public JLayeredPane getDisplay() {
-		return display;
+	    return display;
 	}
+
+	/**
+	 * Sets the display layered pane.
+	 *
+	 * @param display the display layered pane to set.
+	 */
 	public void setDisplay(JLayeredPane display) {
-		this.display = display;
+	    this.display = display;
 	}
+
 }
