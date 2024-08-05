@@ -12,4 +12,4 @@ INSERT INTO png_files VALUES ("AD4","C:\\Users\\Mark\\eclipse-workspace\\ENSF380
 INSERT INTO png_files VALUES ("AD5","C:\\Users\\Mark\\eclipse-workspace\\ENSF380_SubwayScreenProject\\SubwayScreen-main\\ADs\\Screenshot 2024-08-01 at 4.05.08 PM.png");
 INSERT INTO png_files VALUES ("AD6","C:\\Users\\Mark\\eclipse-workspace\\ENSF380_SubwayScreenProject\\SubwayScreen-main\\ADs\\Screenshot 2024-08-01 at 4.05.20 PM.png");
 INSERT INTO png_files VALUES ("AD7","C:\\Users\\Mark\\eclipse-workspace\\ENSF380_SubwayScreenProject\\SubwayScreen-main\\ADs\\Screenshot 2024-08-01 at 4.05.57 PM.png");
-
+INSERT INTO png_files VALUES ("AD8","C:\\Users\\Mark\\eclipse-workspace\\ENSF380_SubwayScreenProject\\SubwayScreen-main\\ADs\\Screenshot 2024-08-01 at 4.05.57 PM.png");
