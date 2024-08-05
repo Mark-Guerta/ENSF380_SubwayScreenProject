@@ -158,7 +158,7 @@ public final class AdvertisementDisplay extends Display {
 	 * @param train Train to get coordinates from
 	 * @param trainLabel JLabel to update position
 	 */
-	private void extractStationCoords(String train, JLabel trainLabel) {
+	 void extractStationCoords(String train, JLabel trainLabel) {
 		Pattern patternStationCode = Pattern.compile("([RGB]\\d\\d)");
 		Matcher matcher = patternStationCode.matcher(train);
 		String stationCode = null;

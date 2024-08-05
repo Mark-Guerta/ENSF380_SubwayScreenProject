@@ -1,7 +1,6 @@
 package ca.ucalgary.edu.ensf380;
 import java.util.regex.*;
 import java.io.IOException;
-import java.util.Scanner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,13 +13,14 @@ import org.jsoup.select.Elements;
 public class weatherReportParse{
 	
 	
-	public static void mainWeather(String[] args) {
-		if (args.length == 0) {
+	public static void weatherMain(String[] args) throws IllegalArgumentException{
+		if (args.length > 1) {
 			System.out.println("enter city name using command line");
-			return;
 	
 		}
-		String cityID = args[0].trim();
+		else
+			throw new IllegalArgumentException("Please add a city name");
+		String cityID = args[1].trim();
 		
 		
 		WeatherReportURL weatherReportURL = new WeatherReportURL();

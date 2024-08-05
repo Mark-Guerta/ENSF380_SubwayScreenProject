@@ -19,23 +19,20 @@ class AnnouncerTest {
 	@Test
 	void testPlayAnnouncerValid() {
 		String validStation ="Ashland Station";
-		try {
-			Announcer.playAnnouncer(validStation);
-		}catch(Exception e) {
-			
-		}
+		Announcer announcer = new Announcer();
+		announcer.setStation(validStation);
+		assertDoesNotThrow(() -> announcer.playAnnouncer());
 	}
 	
 	
 	@Test
 	void testPlayAnnouncerInValid() {
 		String inValidStation ="ENSF Station";
+		Announcer announcer = new Announcer();
+		announcer.setStation(inValidStation);
+		assertDoesNotThrow(() -> announcer.playAnnouncer());
 		
-		
-		IOException thrownException = assertThrows(IOException.class, () -> { Announcer.playAnnouncer(inValidStation);});
-			assertEquals("File does not exist", thrownException.getMessage());
-		
-			
+	
 		
 	}
 

@@ -3,21 +3,22 @@ import java.io.IOException;
 import java.sql.*;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class mySQL {
+public class MySQL {
 
-	public static void main(String[] args) {
+	public static ImageIcon[] getAds() {
+		ImageIcon[] advertisement = new ImageIcon[7];
 		try {
 			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "QWER1234");
 			
 			Statement myStmt = myconnect.createStatement();
 			
-			
+
 			ResultSet myRs = myStmt.executeQuery("select * from pdf_files");
-			
+			int i = 0;
 			while (myRs.next()) {
 				String fileName = myRs.getString("file_name");
 				String filePath = myRs.getString("file_path");
@@ -26,31 +27,30 @@ public class mySQL {
 				
 				File adFile = new File(filePath);
 				if (adFile.exists()) {
-					JFrame frame = new JFrame(fileName);
-					frame.setSize(800, 600);// adjust frame size
-					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					
-					
-					ImageIcon imageIcon  = new ImageIcon(ImageIO.read(adFile));
-					JLabel imageLabel = new JLabel(imageIcon);
-					
-					frame.add(imageLabel);
-					frame.pack();
-					frame.setVisible(true);
-					
+					advertisement[i++] = resizeImage(adFile, 648, 480);
 				}else {
 					System.out.println(" file cannot be fetched");
-				}
-				
-				
+				}	
 			}
 		}
 		catch (SQLException ex) {
 			ex.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
 		}
-
+		return advertisement;
+	}
+	private static ImageIcon resizeImage(File imgFile, int x, int y) {
+        BufferedImage bufferImage = null;
+       	try {
+       		bufferImage = ImageIO.read(imgFile);
+     	} catch (IOException e) {
+       		// TODO Auto-generated catch block
+       		e.printStackTrace();
+      	}
+		ImageIcon icon = new ImageIcon(bufferImage);
+        Image img = icon.getImage();
+		Image imgScale = img.getScaledInstance(x, y, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(imgScale);
+        return scaledIcon;
 	}
 
 }
