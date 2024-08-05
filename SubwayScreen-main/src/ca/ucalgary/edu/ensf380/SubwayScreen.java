@@ -150,7 +150,7 @@ public class SubwayScreen {
     				frame.setSize(1095, 720);
     				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     				frame.setVisible(true);
-   					frame.setResizable(true);
+   					frame.setResizable(false);
    					newsDisplay.scrollNews();
    					// Activates announcer for the first time
    					if (trainDisplay.getDirection().equals("F")) {
