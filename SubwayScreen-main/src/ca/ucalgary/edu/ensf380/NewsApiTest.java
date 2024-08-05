@@ -20,18 +20,21 @@ class NewsApiTest {
 	}
 
 	@Test
-	void testNewsApi() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMainNews() {
-		//fail("Not yet implemented");
-	}
-	@Test
-	void testKeyword() {
+	void testInvokeApi() {
+		String keyword = "Calgary";
+		String[] newsDescription = NewsAPI.invokeApi(keyword);
+		
+		String[] expected = {"Calgary"};
+		
+		assertNotNull(newsDescription);
+		assertArrayEquals(expected, newsDescription);
+		
+		
 		
 	}
 
+	
+
 
 }
+
