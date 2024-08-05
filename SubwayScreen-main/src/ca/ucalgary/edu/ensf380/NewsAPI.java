@@ -19,92 +19,8 @@ import org.json.simple.parser.JSONParser;
 
 
 
-public class NewsAPI {
-    String description;
 
-    public NewsAPI(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-}
-
-class InvokeApi {
-    private static final String URL1 = "https://api.thenewsapi.com/v1/news/all";
-    private static final String API_KEY = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";
-    private static final String LANG = "en";
-
-    public static String fetchNews(String keyword) throws Exception {
-        String authUrl = URL1 + "?api_token=" + API_KEY + "&language=" + LANG + "&search=" + keyword;
-        URI uri = new URI(authUrl);
-        URL url = uri.toURL();
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.connect();
-        int responseCode = connection.getResponseCode();
-
-        if (responseCode != 200) {
-            throw new RuntimeException("Response Code: " + responseCode);
-        }
-
-        StringBuilder informationString = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                informationString.append(inputLine);
-            }
-        }
-
-        return informationString.toString();
-    }
-}
-
- class NewsAPI1 {
-
-    public static String[] mainNews(String[] args) {
-        String keyword = "";
-
-        if (args.length > 2) {
-            keyword = args[2];
-        }
-
-        try {
-            String jsonResponse = InvokeApi.fetchNews(keyword);
-            return parseNews(jsonResponse);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new String[0];
-        }
-    }
-
-    private static String[] parseNews(String jsonResponse) {
-        try {
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(jsonResponse);
-            JSONArray dataArray = (JSONArray) jsonObject.get("data");
-
-            String[] newsDescriptions = new String[dataArray.size()];
-
-            for (int i = 0; i < dataArray.size(); i++) {
-                JSONObject newsData = (JSONObject) dataArray.get(i);
-                String description = (String) newsData.get("description");
-                if (description != null) {
-                    newsDescriptions[i] = description.replaceAll("\\\\n", " ").replaceAll("\\\\u[\\d|[A-Z]]+", "");
-                } else {
-                    newsDescriptions[i] = "No description available";
-                }
-            }
-
-            return newsDescriptions;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new String[0];
-        }
-    }
-}
-/*public class NewsAPI{
+public class NewsAPI{
 	
 	
 	public static String[] mainNews(String[] args ) {
@@ -171,4 +87,4 @@ class InvokeApi {
 		}
 		return newsDescription;
 	}
-}*/
+}
