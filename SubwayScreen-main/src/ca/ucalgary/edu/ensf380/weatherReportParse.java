@@ -6,13 +6,23 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+/**
+ * 	weatherReportParse.java
+ * 	parses a given website for weather content and returns it to user, using REGEX
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
 
 
 
 public class weatherReportParse{
 	
-	
+	/**
+	 * handles command line args
+	 * @param takes a city name 
+	 * @throws illegal args exception if city is not found
+	 */
 	public static void weatherMain(String[] args) throws IllegalArgumentException{
 		if (args.length > 1) {
 			System.out.println("enter city name using command line");
@@ -41,19 +51,30 @@ public class weatherReportParse{
 	
 	public static class WeatherReportURL{
 		private String URL = "https://wttr.in/";
-
+		/**
+		 * method to return URL
+		 * @return url as String
+		 */
 		
 		public String getURL(){
+			
 			return URL;
 		}
-
+		/**
+		 * method to set URL
+		 * @param set URL
+		 */
 		public void setURL(String URL){
 			this.URL = URL;
 		}	
 
 
 		
-		
+		/**
+		 * @param fetches cityID
+		 * @return Jsoup doc contaning weather report 
+		 * @throws IOException if it encounters an error while fetching
+		 */
 		Document fetchWeatherReport(String cityID) throws IOException {
 			return Jsoup.connect(URL + cityID).timeout(10000).get();
 		}
@@ -64,6 +85,9 @@ public class weatherReportParse{
 		private String cityID;
 
 		public String getCityID(){
+			/**
+			 *method to get cityID
+			 */
 			return cityID;
 		}
 
@@ -72,7 +96,10 @@ public class weatherReportParse{
 		}	
 
 
-
+		/**
+		 * @param doc fetched containing weather report 
+		 * @return weather report as a string
+		 */
 		
 		String parseWeatherReport(Document document,String cityID) {
 			String cityIDReg =Pattern.quote(cityID);// determines the regex pattern of the user input
@@ -107,6 +134,9 @@ public class weatherReportParse{
 		}
 
 		public String getWeatherReport(){
+			/**
+			 * method to get weather report
+			 */
 			return weatherReport;
 		}
 
@@ -114,7 +144,10 @@ public class weatherReportParse{
 			this.weatherReport = weatherReport;
 		}	
 
-
+		/**
+		 * @param displays city inputted in cityID
+		 * @param weather report is displayed
+		 */
 		public void displayWeatherReport(String cityID, String weatherReport) {
 			if (weatherReport != null) {
 				System.out.println(cityID + " " + java.time.LocalTime.now() + " " + weatherReport);
@@ -133,64 +166,3 @@ public class weatherReportParse{
 
 
 
-/*
-
-public class weatherReportParse {
-
-	
-	
-	public static void mainWeather(String[] args) {
-		if (args.length == 0) {
-			System.out.println("enter city name using command line");
-			return;
-		}
-		String cityID = args[0].trim();
-		
-		try {// catches exceptions at the end
-			
-			
-			Document document = Jsoup.connect("https://wttr.in/" + cityID).timeout(10000).get();// parses and returns the website in a form of a document. timeout is added in case it takes too long to fetch, so that it doesnt give errors.
-			
-			//System.out.println(document);
-			
-			
-			
-			
-			String cityIDReg =Pattern.quote(cityID);// determines the regex pattern of the user input
-			Pattern cityIDPattern = Pattern.compile(cityIDReg, Pattern.CASE_INSENSITIVE);
-			Matcher matcher = cityIDPattern.matcher(document.html());// looks for a match in the document with the user input
-		
-			if(matcher.find()) {
-				Elements weatherReport = document.select("pre");// if the input is found, it returns the pre elemets which is likley to contain the weather report in the html document
-				for (Element element : weatherReport) {// iterates over each element in the weather collection
-					String weatherReportText = element.text();//retrieves the text content of the element
-					if (weatherReportText.contains(cityID)) {// if the inputted city is found, it prints the information.
-						System.out.println(cityID+" "+ java.time.LocalTime.now()+"  "+ weatherReportText );	
-						
-						break;
-						
-					}
-					
-				}
-					
-			
-			
-			
-			
-			
-			} else {
-			System.out.println("City ID not found");
-			}
-		
-
-		
-			
-		}catch (IOException e) {
-			e.printStackTrace();
-			
-		}
-	}
-}	
-	*/
-	 
-	

@@ -9,7 +9,12 @@ import javax.swing.JLabel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+ * 	AdvertisementDisplayTest.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
 class AdvertisementDisplayTest {
 	AdvertisementDisplay adDisplay;
 

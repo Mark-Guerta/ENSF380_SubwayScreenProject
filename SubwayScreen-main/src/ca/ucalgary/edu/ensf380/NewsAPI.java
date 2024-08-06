@@ -10,7 +10,12 @@ import java.util.regex.Pattern;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+/**
+ * 	NewsAPI.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
 
 
 
@@ -20,13 +25,25 @@ public class NewsAPI{
 	private String keyword = "";
 
 	public String getKeyword(){
+		/**
+		 * method to get keyword
+		 * @return current keyword as string
+		 */
 		return keyword;
 	}	
 
 	public void setKeyword(String keyword){
+		/**
+		 * method to set keyword
+		 * @param keyword set for news search
+		 */
 		this.keyword = keyword;
 	}	
-	
+	/**
+	 * handles command line args
+	 * @param  command line args 
+	 * @return array with news description
+	 */
 	public static String[] mainNews(String[] args ) {
 		String keyword = "";
 		
@@ -38,7 +55,11 @@ public class NewsAPI{
 	
 	
 		
-	
+	/**
+	 * fetches news based on keyword 
+	 * @param parses and return description based on keyword 
+	 * @return array with news description based on keyword
+	 */
 	private static String[] invokeApi(String keyword) {
 		String [] newsDescription = null;
 		try {

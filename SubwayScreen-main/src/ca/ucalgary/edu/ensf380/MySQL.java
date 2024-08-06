@@ -6,22 +6,27 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+/**
+ * 	MySQL.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
 public class MySQL {
 
 	public static ImageIcon[] getAds() {
 		ImageIcon[] advertisement = new ImageIcon[8];
 		try {
-			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "ENSF380FinalProject");
+			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "QWER1234");
 			
 			Statement myStmt = myconnect.createStatement();
 			
 
-			ResultSet myRs = myStmt.executeQuery("select * from png_files");
+			ResultSet myRs = myStmt.executeQuery("select * from pdf_files");
 			int i = 0;
 			while (myRs.next()) {
-				String fileName = myRs.getString("filename");
-				String filePath = myRs.getString("filepath");
+				String fileName = myRs.getString("file_name");
+				String filePath = myRs.getString("file_path");
 				System.out.println(fileName + ", " + filePath);
 				
 				File adFile = new File(filePath);

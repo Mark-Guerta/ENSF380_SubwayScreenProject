@@ -16,14 +16,19 @@ import javax.swing.ImageIcon;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+ * MySQLTest.java
+ * 	@author Mark Guerta
+ * 	@author Saif Youssef
+ *  @version 1.0
+ */
 class MySQLTest {
 	Connection connection;
 	Statement statement;
 	File testFile;
 	@BeforeEach
 	void setUp() throws Exception {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "ENSF380FinalProject");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "ENSF380FinalProject");//change password for SQL
 		statement  = connection.createStatement();
 		testFile = new File("ads", "AD1,png");
         }

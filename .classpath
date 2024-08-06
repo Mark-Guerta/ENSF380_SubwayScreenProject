@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/mysql-connector-j-9.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/jsoup-1.6.0.jar"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/json-20210307.jar"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/jackson-databind-2.13.0.jar"/>
+	<classpathentry kind="lib" path="/Users/saifyoussef/Desktop/final/ENSF380_SubwayScreenProject/SubwayScreen-main/lib/gson-2.8.9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
