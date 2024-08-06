@@ -27,12 +27,14 @@ class NewsApiTest {
 	@Test
 	void testInvokeApi() {
 		String keyword = "Calgary";
-		//String[] newsDescription = NewsAPI.invokeApi(keyword);
+		//NewsAPI newsAPI = new NewsAPI();
 		
-		String[] expected = {"Calgary"};
+		String[] newsDescriptions = NewsAPI.invokeApi(keyword);
 		
-		//assertNotNull(newsDescription);
-		//assertArrayEquals(expected, newsDescription);
+		
+		
+		assertNotNull(newsDescriptions);
+		assertTrue(newsDescriptions.length > 0);
 		
 		
 		

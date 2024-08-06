@@ -60,7 +60,7 @@ public class NewsAPI{
 	 * @param parses and return description based on keyword 
 	 * @return array with news description based on keyword
 	 */
-	private static String[] invokeApi(String keyword) {
+	static String[] invokeApi(String keyword) {
 		String [] newsDescription = null;
 		try {
 			String url1 = "https://api.thenewsapi.com/v1/news/all";//
