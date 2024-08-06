@@ -20,16 +20,16 @@ public class MySQL {
 	public static ImageIcon[] getAds() {
 		ImageIcon[] advertisement = new ImageIcon[8];
 		try {
-			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdf", "root", "QWER1234");
+			Connection myconnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/png", "root", "QWER1234");
 			
 			Statement myStmt = myconnect.createStatement();
 			
 
-			ResultSet myRs = myStmt.executeQuery("select * from pdf_files");
+			ResultSet myRs = myStmt.executeQuery("select * from png_files");
 			int i = 0;
 			while (myRs.next()) {
-				String fileName = myRs.getString("file_name");
-				String filePath = myRs.getString("file_path");
+				String fileName = myRs.getString("filename");
+				String filePath = myRs.getString("filepath");
 				System.out.println(fileName + ", " + filePath);
 				
 				File adFile = new File(filePath);
