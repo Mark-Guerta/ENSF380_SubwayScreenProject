@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
  *  @version 1.0
  */
 class TrainDisplayTest {
+	// initializes train display with sample args
 	TrainDisplay trainDisplay;
 	Announcer testAnnouncer;
 	ArrayList<String[]> stationArray;
@@ -30,12 +31,12 @@ class TrainDisplayTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+	// verifies it doesnt cause a runtime error
 	@Test
 	void testUpdateDisplay() {
 		assertDoesNotThrow(() -> trainDisplay.updateDisplay());
 	}
-
+// tests the method to ensure it properly matches a given station
 	@Test
 	void testStationMatcher() {
 		assertDoesNotThrow(() -> trainDisplay.stationMatcher("T1(R01, F)"));

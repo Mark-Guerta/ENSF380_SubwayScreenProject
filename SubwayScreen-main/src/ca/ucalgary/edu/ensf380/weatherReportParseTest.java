@@ -22,7 +22,7 @@ class weatherReportParseTest {
 	weatherReportParse.WeatherReportURL weatherReportURL;
 	weatherReportParse.WeatherReportParser weatherReportParser;
 	weatherReportParse.WeatherReportDisplay weatherReportDisplay;
-
+// initializes instances before each run
 	@BeforeEach
 	void setUp() throws Exception {
 		weatherReportURL = new weatherReportParse.WeatherReportURL();
@@ -38,7 +38,7 @@ class weatherReportParseTest {
 	void testMain() {
 		//fail("Not yet implemented");
 	}
-	
+	// verifies the method correctly fetches weather report and that it contains the inputted city
 	@Test
 	void testWeatherReportURL() {
 		//String URL = "https://wttr.in/";
@@ -53,6 +53,7 @@ class weatherReportParseTest {
 			e.printStackTrace();
 		}
 	}
+	// verifies it returns null for invalid cities
 	@Test
 	void testWeatherReportURLInvalidCity() {
 		//String URL = "https://wttr.in/";
@@ -60,6 +61,7 @@ class weatherReportParseTest {
 		String weatherReport = null;
 		weatherReportDisplay.displayWeatherReport(cityID, weatherReport);
 	}
+	// verifies that the parsed results are not null
 	@Test
 	void testWeatherReportParser() {
 		String cityID = "Calgary";

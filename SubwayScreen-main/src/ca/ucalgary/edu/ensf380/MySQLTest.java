@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
  *  @version 1.0
  */
 class MySQLTest {
+	// establishes a connection with mySQL
 	Connection connection;
 	Statement statement;
 	File testFile;
@@ -36,7 +37,9 @@ class MySQLTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
+// ensure ads are retrievd succesfully from database
+	// checks frame dimension
+	// verifies returned array is not null
 	@Test
 	public void testGetAds() {
 		ImageIcon[] ads = MySQL.getAds();
@@ -49,6 +52,7 @@ class MySQLTest {
 		assertEquals(648, img.getWidth(null));
 		assertEquals(480, img.getHeight(null));
  	}
+	// tests the resize image method and ensures it resizes the image without throwing exception
 	@Test 
 	void testResizeImage() {
 		assertDoesNotThrow(() -> MySQL.resizeImage(new File("trainSymbols","TrainSymbolRed.png"), 1, 1));

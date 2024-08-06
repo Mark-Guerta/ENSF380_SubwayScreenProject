@@ -63,26 +63,26 @@ public class NewsAPI{
 	static String[] invokeApi(String keyword) {
 		String [] newsDescription = null;
 		try {
-			String url1 = "https://api.thenewsapi.com/v1/news/all";//
-			String apiKey = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";
-			String lang = "en";
-			String authUrl = url1 + "?api_token="+ apiKey + "&language=" + lang   + "&search=" + keyword;
-			URI uri = new URI(authUrl);
-			URL url = uri.toURL();
+			String url1 = "https://api.thenewsapi.com/v1/news/all";// URL for news, searches all
+			String apiKey = "EJFVfpkyGigzkTt2nBCGrRZYNlzMsfCc6j6tshOh";// api key
+			String lang = "en";// language of fetched news
+			String authUrl = url1 + "?api_token="+ apiKey + "&language=" + lang   + "&search=" + keyword;// combines everything into one URL
+			URI uri = new URI(authUrl);// makes a URI
+			URL url = uri.toURL();// converts from URI to URL, since it has been unavailable for current java version
 			
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
-			connection.connect();
+			connection.connect();// opens connection with api and requests data using GET
 			
 			
 			int responseCode = connection.getResponseCode();
 			
-			if (responseCode != 200) {
-				throw new RuntimeException("Response Code" + responseCode);
+			if (responseCode != 200) {// ensures the connection is OK , code is 200
+				throw new RuntimeException("Response Code" + responseCode);// otherwise returns error response code
 				
 			}else {
 				StringBuilder informationString = new StringBuilder();
-				Scanner scanner = new Scanner(url.openStream());
+				Scanner scanner = new Scanner(url.openStream());// reads and build the response string
 				
 				
 				while(scanner.hasNext()) {
@@ -91,17 +91,17 @@ public class NewsAPI{
 				scanner.close();
 				System.out.println(informationString);
 				
-				JSONParser parse = new JSONParser();
+				JSONParser parse = new JSONParser();// parses the JSON response
 				JSONObject jsonObject = (JSONObject) parse.parse(String.valueOf(informationString.toString()));
-				JSONArray dataArray = (JSONArray) jsonObject.get("data");
+				JSONArray dataArray = (JSONArray) jsonObject.get("data");// retrives JSON array associated with data
 				newsDescription = new String[dataArray.size()];
-				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\")");
+				Pattern snippetPattern = Pattern.compile("(\"description\":\".+?\")");// regex pattern to extract descriptions
 
-				for (int i = 0; i < dataArray.size(); i++) {
+				for (int i = 0; i < dataArray.size(); i++) {// iterates over each item in the data array
 					JSONObject newsData = (JSONObject) dataArray.get(0);
 					Matcher matcher = snippetPattern.matcher(newsData.toString());
 					String description = null;
-					if (matcher.find())
+					if (matcher.find())// if pattern is found, replaces new line chars in description with a space
 						description = matcher.group(1).replaceAll("\"description\":","").replaceAll("\\\\n\\\\n", "").replaceAll("\\\\u[\\d|[A-Z]]+", "");
 					description = description.substring(1, description.length() - 1);
 					newsDescription[i] = description;

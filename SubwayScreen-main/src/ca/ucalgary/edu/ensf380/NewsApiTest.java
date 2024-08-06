@@ -23,7 +23,7 @@ class NewsApiTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
+// tests the invoke API method and ensures it retrives news description given a keyword
 	@Test
 	void testInvokeApi() {
 		String keyword = "Calgary";

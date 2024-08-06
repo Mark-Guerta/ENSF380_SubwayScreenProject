@@ -15,6 +15,7 @@ class NewsDisplayTest {
 	NewsDisplay newsDisplay;
 	String[] testNewsDescription;
 	String[] args = {"1", "2"};;
+	// initializes newsdisplay with sample arg
 	@BeforeEach
 	void setUp() throws Exception {
 		testNewsDescription = new String[] {
@@ -29,16 +30,17 @@ class NewsDisplayTest {
 	}
 
 	@Test
+	// ensures news label is properly initialized
 	void testNewsDisplay() {
 		assertNotNull(newsDisplay.getNewsLabel());
 		assertNotEquals("", newsDisplay.getNewsLabel().getText());
 	}
-
+// verifies updating display doesnt result in runtime errors
 	@Test
 	void testUpdateDisplay() {
 		assertDoesNotThrow(() -> newsDisplay.updateDisplay());
 	}
-	
+	// veifies the scrolling feature
 	@Test
 	void testScrollNews() {
 		assertDoesNotThrow(() -> newsDisplay.scrollNews());
