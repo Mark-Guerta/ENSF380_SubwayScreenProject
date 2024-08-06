@@ -17,12 +17,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 /**
- * MySQLTest.java
+ *  Tests MySQL functionality
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
  */
-class MySQLTest {
+public class MySQLTest {
 	// establishes a connection with mySQL
 	Connection connection;
 	Statement statement;

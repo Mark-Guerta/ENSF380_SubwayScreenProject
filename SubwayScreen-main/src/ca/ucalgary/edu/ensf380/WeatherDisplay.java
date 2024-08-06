@@ -6,7 +6,6 @@ import java.time.*;
 
 import javax.swing.*;
 /**
- * 	WeatherDisplay.java
  *  Uses the weatherParser to print weather on the console and displays the time on the screen.
  * 	@author Mark Guerta
  * 	@author Saif Youssef

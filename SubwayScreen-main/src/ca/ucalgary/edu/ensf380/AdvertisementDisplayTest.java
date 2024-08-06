@@ -10,12 +10,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 /**
- * 	AdvertisementDisplayTest.java
+ * 	Tests Advertisement Display
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
  */
-class AdvertisementDisplayTest {
+public class AdvertisementDisplayTest {
 	// initializes ad display
 	AdvertisementDisplay adDisplay;
 // initializes the train lists

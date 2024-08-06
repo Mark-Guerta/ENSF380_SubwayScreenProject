@@ -40,9 +40,9 @@ public class NewsAPI{
 		this.keyword = keyword;
 	}	
 	/**
-	 * handles command line args
-	 * @param  command line args 
-	 * @return array with news description
+	 * handles command line arguments
+	 * @param  args command line arguments 
+	 * @return newsDescription array with news description
 	 */
 	public static String[] mainNews(String[] args ) {
 		String keyword = "";
@@ -57,8 +57,8 @@ public class NewsAPI{
 		
 	/**
 	 * fetches news based on keyword 
-	 * @param parses and return description based on keyword 
-	 * @return array with news description based on keyword
+	 * @param keyword parses and return description based on keyword 
+	 * @return newsDescription array with news description based on keyword
 	 */
 	static String[] invokeApi(String keyword) {
 		String [] newsDescription = null;

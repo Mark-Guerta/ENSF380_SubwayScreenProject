@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * 	@author Saif Youssef
  *  @version 1.0
  */
-class NewsDisplayTest {
+public class NewsDisplayTest {
 	NewsDisplay newsDisplay;
 	String[] testNewsDescription;
 	String[] args = {"1", "2"};;

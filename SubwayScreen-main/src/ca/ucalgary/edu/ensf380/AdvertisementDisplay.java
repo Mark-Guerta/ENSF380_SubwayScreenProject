@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 /**
- * 	AdvertisementDisplay.java
  * 	Displays advertisements and the train map by passing train map and all trains
  * 	@author Mark Guerta
  * 	@author Saif Youssef

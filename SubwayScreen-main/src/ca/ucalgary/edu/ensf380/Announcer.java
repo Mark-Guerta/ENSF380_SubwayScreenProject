@@ -7,7 +7,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 /**
- * 	Announcer.java
  * 	Plays audio files using the by the name of the station
  * 	@author Mark Guerta
  * 	@author Saif Youssef

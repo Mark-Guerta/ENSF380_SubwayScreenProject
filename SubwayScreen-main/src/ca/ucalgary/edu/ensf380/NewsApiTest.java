@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  * 	@author Saif Youssef
  *  @version 1.0
  */
-class NewsApiTest {
+public class NewsApiTest {
 	String result;
 
 	@BeforeEach

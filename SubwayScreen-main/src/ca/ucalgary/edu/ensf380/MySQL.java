@@ -7,13 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 /**
- * 	MySQL.java
+ * 	Fetches images from mySQL server
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
  */
 public class MySQL {
-
+	/**
+	 * Fetches and returns images in an ImageIcon array for displaying using JLabels
+	 * @return advertisement ImageIcon[] array for JLabels
+	 */
 	public static ImageIcon[] getAds() {
 		ImageIcon[] advertisement = new ImageIcon[8];
 		try {
@@ -42,6 +45,14 @@ public class MySQL {
 		}
 		return advertisement;
 	}
+	
+	/**
+	 * Resizes images based x and y dimensions
+	 * @param imgFile Image path
+	 * @param x X dimension of the desired image
+	 * @param y Y dimension of the desired image
+	 * @return scaledIcon The resized photo as a ImageIcon
+	 */
 	public static ImageIcon resizeImage(File imgFile, int x, int y) {
         BufferedImage bufferImage = null;
        	try {

@@ -20,8 +20,8 @@ public class weatherReportParse{
 	
 	/**
 	 * handles command line args
-	 * @param takes a city name 
-	 * @throws illegal args exception if city is not found
+	 * @param args Command Line Argument array (args[1] contains the city)
+	 * @throws IllegalArgumentException illegal args exception if city is not found
 	 */
 	public static void weatherMain(String[] args) throws IllegalArgumentException{
 		if (args.length > 1) {
@@ -53,7 +53,7 @@ public class weatherReportParse{
 		private String URL = "https://wttr.in/";
 		/**
 		 * method to return URL
-		 * @return url as String
+		 * @return URL url as String
 		 */
 		
 		public String getURL(){
@@ -62,7 +62,7 @@ public class weatherReportParse{
 		}
 		/**
 		 * method to set URL
-		 * @param set URL
+		 * @param URL set URL
 		 */
 		public void setURL(String URL){
 			this.URL = URL;
@@ -71,11 +71,11 @@ public class weatherReportParse{
 
 		
 		/**
-		 * @param fetches cityID
-		 * @return Jsoup doc contaning weather report 
+		 * @param cityID fetches cityID
+		 * @return 	Document Jsoup doc contaning weather report 
 		 * @throws IOException if it encounters an error while fetching
 		 */
-		Document fetchWeatherReport(String cityID) throws IOException {
+	public Document fetchWeatherReport(String cityID) throws IOException {
 			return Jsoup.connect(URL + cityID).timeout(10000).get();
 		}
 	}
@@ -97,8 +97,9 @@ public class weatherReportParse{
 
 
 		/**
-		 * @param doc fetched containing weather report 
-		 * @return weather report as a string
+		 * @param document fetched containing weather report 
+		 * @param cityID String of cityID
+		 * @return weatherReportText weather report as a string
 		 */
 		
 		String parseWeatherReport(Document document,String cityID) {
@@ -145,8 +146,8 @@ public class weatherReportParse{
 		}	
 
 		/**
-		 * @param displays city inputted in cityID
-		 * @param weather report is displayed
+		 * @param cityID displays city inputted in cityID
+		 * @param weatherReport weather report is displayed
 		 */
 		public void displayWeatherReport(String cityID, String weatherReport) {
 			if (weatherReport != null) {
