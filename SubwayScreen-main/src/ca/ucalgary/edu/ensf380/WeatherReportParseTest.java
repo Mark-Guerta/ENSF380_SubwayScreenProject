@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 /**
- * 	weatherReportParseTest.java
+ *  Tests WeatherParser functionality
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -18,16 +18,16 @@ import org.junit.jupiter.api.Test;
 
 
 
-class weatherReportParseTest {
-	weatherReportParse.WeatherReportURL weatherReportURL;
-	weatherReportParse.WeatherReportParser weatherReportParser;
-	weatherReportParse.WeatherReportDisplay weatherReportDisplay;
+class WeatherReportParseTest {
+	WeatherReportParse.WeatherReportURL weatherReportURL;
+	WeatherReportParse.WeatherReportParser weatherReportParser;
+	WeatherReportParse.WeatherReportDisplay weatherReportDisplay;
 // initializes instances before each run
 	@BeforeEach
 	void setUp() throws Exception {
-		weatherReportURL = new weatherReportParse.WeatherReportURL();
-		weatherReportParser = new weatherReportParse.WeatherReportParser();
-		weatherReportDisplay = new weatherReportParse.WeatherReportDisplay();
+		weatherReportURL = new WeatherReportParse.WeatherReportURL();
+		weatherReportParser = new WeatherReportParse.WeatherReportParser();
+		weatherReportDisplay = new WeatherReportParse.WeatherReportDisplay();
 	}
 
 	@AfterEach

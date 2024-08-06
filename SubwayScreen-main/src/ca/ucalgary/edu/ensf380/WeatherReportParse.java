@@ -7,8 +7,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * 	weatherReportParse.java
- * 	parses a given website for weather content and returns it to user, using REGEX
+ * 	Parses a given website for weather content and returns it to user, using REGEX
  * 	@author Mark Guerta
  * 	@author Saif Youssef
  *  @version 1.0
@@ -16,7 +15,7 @@ import org.jsoup.select.Elements;
 
 
 
-public class weatherReportParse{
+public class WeatherReportParse{
 	
 	/**
 	 * handles command line args

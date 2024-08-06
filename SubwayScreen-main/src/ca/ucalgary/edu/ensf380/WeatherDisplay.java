@@ -25,7 +25,7 @@ public final class WeatherDisplay extends Display{
 		timeLabel = new JLabel(LocalDateTime.now().toString());
 		display.add(timeLabel);
 
-		weatherReportParse.weatherMain(args);
+		WeatherReportParse.weatherMain(args);
 	}
 	/**
 	 * Updates and fetches weather data from weatherReportParse
