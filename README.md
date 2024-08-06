@@ -48,5 +48,7 @@
 
 ### JUnit Testing
 <p>
-  Download JUnit 5 on Eclipse using the intellisense tool. To run the JUnit tests, go to src\ca\ucalgary\edu\ensf380 and find the class files with test and then run each one independently.
+  Download JUnit 5 on Eclipse using the intellisense tool. To run the JUnit tests, go to src\ca\ucalgary\edu\ensf380 and find the class files with test and then run each one independently. Test documentation can be found in TestDocumentation located in the root folder of SubScreen-main.
+  Note: When testing MySQLTest.java, ensure that the mySQL password is set to the local server's password.
 </p>
+
