@@ -16,8 +16,9 @@ import org.junit.jupiter.api.Test;
  *  @version 1.0
  */
 class AdvertisementDisplayTest {
+	// initializes ad display
 	AdvertisementDisplay adDisplay;
-
+// initializes the train lists
 	@BeforeEach
 	void setUp() throws Exception {
 		String [] trainList = {"T1(R01, F)", "T2(G01, B)", "T3(B01, F)", "T4(R12, F)", "T5(G12, B)", "T6(B12, F)",
@@ -35,6 +36,8 @@ class AdvertisementDisplayTest {
 	void testConstructor() {
 		assertNotNull(adDisplay);
 	}
+	
+	// tests the extraxt coords method to ensure it calculates the correct location of the given train
 	@Test
 	void testExtractStationCoords() {
 		JLabel trainLabel = adDisplay.getAdLabel();
@@ -44,16 +47,17 @@ class AdvertisementDisplayTest {
 		assertEquals(expectedLocation.x, location.x);
 		assertEquals(expectedLocation.y, location.y);
 	}
+	// tests update display method
 	@Test
 	void testUpdateDisplay() {
 		assertDoesNotThrow(() -> adDisplay.updateDisplay());
 	}
-	
+	// tests resize image method
 	@Test 
 	void testResizeImage() {
 		assertDoesNotThrow(() -> adDisplay.resizeImage(new File("trainSymbols","TrainSymbolRed.png"), 1, 1));
 	}
-	
+	// tests ad timer
 	@Test
 	void testAdTime() {
 		assertDoesNotThrow(() -> adDisplay.adTimer());
